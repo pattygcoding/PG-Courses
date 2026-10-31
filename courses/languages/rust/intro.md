@@ -1,6 +1,6 @@
 ---
 title: Rust
-level: Intermediate
+level: Advanced
 summary: Learn ownership, borrowing, traits and the type system by building tools that run, from cargo new to async and unsafe.
 labels:
   - Language
