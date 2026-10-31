@@ -16,7 +16,8 @@ benchmarking, fuzzing, the linters, modules, cross-compilation, observability, a
 
 Two things were left as pointers rather than lessons: a database layer, because `database/sql` is a driver interface whose
 shape depends on the database, and a web framework, because `net/http` is enough for a JSON API and a framework is a
-dependency to add once the standard version is understood.
+dependency to add once the standard version is understood. The SQL course covers the other half of the first one: the
+statements `database/sql` sends, and what the engine does with them.
 
 ## What the other courses here cover
 
