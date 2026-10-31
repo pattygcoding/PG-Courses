@@ -283,6 +283,10 @@ paste it into a terminal.
 
 ## Checklist before a course or lesson is published
 
+Run `node scripts/check-course.mjs courses/<category>/[<subcategory>/]<course>` first. It covers the mechanical
+items below: frontmatter fields, lesson file names, registered fence languages, em and en dashes, the banned
+words, trailing whitespace and the closing section. The rest is a read-through.
+
 1. No em dashes or en dashes.
 2. No "it is not X, it is Y" shapes.
 3. No emojis.
