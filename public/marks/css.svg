@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="css-mark-title">
+  <title id="css-mark-title">CSS</title>
+  <!-- The course mark: the braces that wrap a declaration block, drawn from plain shapes. -->
+  <defs>
+    <radialGradient id="css-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#css-mark-glow)" />
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="44">
+    <path d="M 500 330 C 440 330 434 366 434 404 L 434 462 C 434 494 420 512 380 512 C 420 512 434 530 434 562 L 434 620 C 434 658 440 694 500 694" stroke="#8debc4" />
+    <path d="M 524 330 C 584 330 590 366 590 404 L 590 462 C 590 494 604 512 644 512 C 604 512 590 530 590 562 L 590 620 C 590 658 584 694 524 694" stroke="#8debc4" />
+    <circle cx="512" cy="430" r="24" stroke="#4fb894" />
+    <circle cx="512" cy="594" r="24" stroke="#4fb894" />
+  </g>
+</svg>
