@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="ruby-mark-title">
+  <title id="ruby-mark-title">Ruby</title>
+  <!-- The course mark: a cut gem, drawn as one outline and six facets. -->
+  <defs>
+    <radialGradient id="ruby-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#ruby-mark-glow)" />
+  <g fill="none" stroke="#8debc4" stroke-width="56" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M 300 340 L 724 340 L 784 430 L 512 800 L 240 430 Z" />
+  </g>
+  <g fill="none" stroke="#4fb894" stroke-width="30" stroke-linecap="round">
+    <path d="M 240 430 L 784 430" />
+    <path d="M 300 340 L 370 430" />
+    <path d="M 724 340 L 654 430" />
+    <path d="M 370 430 L 512 800" />
+    <path d="M 654 430 L 512 800" />
+  </g>
+</svg>

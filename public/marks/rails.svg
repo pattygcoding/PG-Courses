@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="rails-mark-title">
+  <title id="rails-mark-title">Ruby on Rails</title>
+  <!-- The course mark: two rails receding, with four sleepers between them. -->
+  <defs>
+    <radialGradient id="rails-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#rails-mark-glow)" />
+  <g fill="none" stroke="#8debc4" stroke-width="60" stroke-linecap="round">
+    <path d="M 296 872 L 432 216" />
+    <path d="M 728 872 L 592 216" />
+  </g>
+  <g fill="none" stroke="#4fb894" stroke-width="40" stroke-linecap="round">
+    <path d="M 314 776 L 710 776" />
+    <path d="M 352 620 L 672 620" />
+    <path d="M 390 472 L 634 472" />
+    <path d="M 424 344 L 600 344" />
+  </g>
+</svg>
