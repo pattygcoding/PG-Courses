@@ -60,6 +60,17 @@ describe('renderPage', () => {
     expect(html).not.toContain('hljs-')
   })
 
+  it('draws the copy button as an icon per state rather than a word', () => {
+    const { html } = renderPage('```text\noutput\n```')
+
+    expect(html).toContain('code-copy-icon-copy')
+    expect(html).toContain('code-copy-icon-done')
+    expect(html).toContain('code-copy-icon-failed')
+    expect(html).toContain('data-copy-status')
+    expect(html).not.toContain('>Copy<')
+    expect(html).not.toContain('>Copied<')
+  })
+
   it('marks the prompt lines of a Python session transcript', () => {
     const { html } = renderPage('```pycon\n>>> 1 + 1\n2\n```')
 

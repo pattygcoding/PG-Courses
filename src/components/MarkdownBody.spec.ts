@@ -1,13 +1,14 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import MarkdownBody from './MarkdownBody.vue'
+import { renderPage } from '../content/markdown'
 
-/** What the renderer emits for one highlighted block. */
-const BLOCK =
-  '<div class="code-block">' +
-  '<button type="button" class="code-copy" data-copy aria-label="Copy this code to the clipboard">Copy</button>' +
-  '<pre><code class="language-python"><span class="hljs-keyword">def</span> add():\n    <span class="hljs-keyword">return</span> 1</code></pre>' +
-  '</div>'
+/**
+ * What the renderer emits for one highlighted block. Taken from the renderer
+ * rather than written out, so the fixture cannot drift from the markup the
+ * component actually receives.
+ */
+const BLOCK = renderPage(['```python', 'def add():', '    return 1', '```'].join('\n')).html
 
 /** Replace the clipboard with one that records the text it is handed. */
 function stubClipboard(writeText: (text: string) => Promise<void>): void {
@@ -24,6 +25,16 @@ describe('MarkdownBody', () => {
     expect(wrapper.get('pre code').text()).toContain('add()')
   })
 
+  it('shows an icon and no words of its own', () => {
+    const wrapper = mount(MarkdownBody, { props: { html: BLOCK } })
+    const button = wrapper.get('button[data-copy]')
+
+    expect(button.findAll('svg')).toHaveLength(3)
+    expect(button.findAll('svg[aria-hidden="true"]')).toHaveLength(3)
+    expect(button.text()).toBe('')
+    expect(button.attributes('aria-label')).toBe('Copy this code to the clipboard')
+  })
+
   it('copies the code from the block the button sits in', async () => {
     let copied = ''
     stubClipboard(async (text) => {
@@ -38,7 +49,7 @@ describe('MarkdownBody', () => {
     expect(copied).not.toContain('<span')
   })
 
-  it('confirms the copy, then goes back to the original label', async () => {
+  it('switches to the copied state, announces it, then goes back', async () => {
     vi.useFakeTimers()
     stubClipboard(async () => {})
 
@@ -47,16 +58,16 @@ describe('MarkdownBody', () => {
 
     await button.trigger('click')
     await flushPromises()
-    expect(button.text()).toBe('Copied')
     expect(button.attributes('data-state')).toBe('copied')
+    expect(wrapper.get('[data-copy-status]').text()).toBe('Copied to the clipboard')
 
     vi.advanceTimersByTime(2000)
     await flushPromises()
-    expect(button.text()).toBe('Copy')
     expect(button.attributes('data-state')).toBeUndefined()
+    expect(wrapper.get('[data-copy-status]').text()).toBe('')
   })
 
-  it('says so when neither clipboard mechanism works', async () => {
+  it('switches to the failed state when neither clipboard mechanism works', async () => {
     stubClipboard(() => Promise.reject(new Error('denied')))
     Object.defineProperty(document, 'execCommand', { value: () => false, configurable: true })
 
@@ -66,7 +77,7 @@ describe('MarkdownBody', () => {
     await button.trigger('click')
     await flushPromises()
 
-    expect(button.text()).toBe('Copy failed')
     expect(button.attributes('data-state')).toBe('failed')
+    expect(wrapper.get('[data-copy-status]').text()).toBe('Copy failed')
   })
 })

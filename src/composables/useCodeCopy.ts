@@ -1,9 +1,14 @@
 import { onBeforeUnmount, onMounted, type Ref } from 'vue'
 
-const COPY_LABEL = 'Copy'
-const COPIED_LABEL = 'Copied'
-const FAILED_LABEL = 'Copy failed'
+/** What a screen reader is told, since the button itself shows only an icon. */
+const COPIED_STATUS = 'Copied to the clipboard'
+const FAILED_STATUS = 'Copy failed'
 const RESET_MS = 1600
+
+const STATUS: Record<'copied' | 'failed', string> = {
+  copied: COPIED_STATUS,
+  failed: FAILED_STATUS,
+}
 
 /**
  * Copy text to the clipboard.
@@ -38,6 +43,25 @@ async function writeToClipboard(text: string): Promise<boolean> {
 }
 
 /**
+ * The icons are chosen by `data-state` in the stylesheet, so the handler sets the
+ * state and the sentence a screen reader reads, and nothing else. The sentence
+ * goes into the live region beside the button, so the button's own name stays
+ * put while the feedback is announced.
+ */
+function setState(button: HTMLButtonElement, state: 'copied' | 'failed' | null): void {
+  if (state) {
+    button.dataset.state = state
+  } else {
+    delete button.dataset.state
+  }
+
+  const region = button.closest('.code-block')?.querySelector('[data-copy-status]')
+  if (region instanceof HTMLElement) {
+    region.textContent = state ? STATUS[state] : ''
+  }
+}
+
+/**
  * Wire the copy buttons the Markdown renderer puts beside each code block.
  *
  * One listener on the container handles every button, so nothing has to be
@@ -61,13 +85,11 @@ export function useCodeCopy(container: Ref<HTMLElement | null>) {
     }
 
     const copied = await writeToClipboard(code)
-    button.textContent = copied ? COPIED_LABEL : FAILED_LABEL
-    button.dataset.state = copied ? 'copied' : 'failed'
+    setState(button, copied ? 'copied' : 'failed')
 
     clearTimeout(reset)
     reset = setTimeout(() => {
-      button.textContent = COPY_LABEL
-      delete button.dataset.state
+      setState(button, null)
     }, RESET_MS)
   }
 
@@ -81,5 +103,5 @@ export function useCodeCopy(container: Ref<HTMLElement | null>) {
     clearTimeout(reset)
   })
 
-  return { copyLabel: COPY_LABEL, copiedLabel: COPIED_LABEL, failedLabel: FAILED_LABEL }
+  return { copiedStatus: COPIED_STATUS, failedStatus: FAILED_STATUS }
 }

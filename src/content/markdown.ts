@@ -20,12 +20,44 @@ const renderer = new MarkdownIt({
 })
 
 /**
+ * One icon sprite, at the size and stroke weight the rest of the site's icons
+ * use. Each copy button carries all three inline rather than pointing at a
+ * shared `<symbol>`, because four short paths repeated per page compress to
+ * nothing and a `<use>` reference that fails shows an empty button.
+ */
+function sprite(variant: string, shape: string): string {
+  return (
+    `<svg class="code-copy-icon ${variant}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" ` +
+    `viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ` +
+    `stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shape}</svg>`
+  )
+}
+
+/** Which sprite shows is decided by `data-state` in the stylesheet. */
+const COPY_ICONS =
+  sprite(
+    'code-copy-icon-copy',
+    '<rect x="9" y="9" width="13" height="13" rx="2" />' +
+      '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />',
+  ) +
+  sprite('code-copy-icon-done', '<path d="M20 6 9 17l-5-5" />') +
+  sprite('code-copy-icon-failed', '<path d="M18 6 6 18M6 6l12 12" />')
+
+/**
  * The button the copy handler in `useCodeCopy` looks for. It carries no code of
  * its own: the handler reads the text from the block it sits in, so nothing is
  * duplicated into an attribute.
+ *
+ * The button shows an icon and no words, so its accessible name comes from
+ * `aria-label` and the outcome goes into a live region beside it. Putting the
+ * sentence in the button would work visually and rename the control mid-click,
+ * which a screen reader treats as a different button.
  */
 const COPY_BUTTON =
-  '<button type="button" class="code-copy" data-copy aria-label="Copy this code to the clipboard">Copy</button>'
+  '<button type="button" class="code-copy" data-copy aria-label="Copy this code to the clipboard">' +
+  COPY_ICONS +
+  '</button>' +
+  '<span class="sr-only" data-copy-status aria-live="polite"></span>'
 
 const rules = renderer.renderer.rules
 const baseFence = rules.fence

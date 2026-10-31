@@ -250,7 +250,7 @@ html[data-theme='light'] .theme-icon-sun {
   }
 
   .code-copy {
-    @apply micro absolute right-2 top-2 z-10 rounded-md border border-line/15 px-2 py-1 text-fg-muted transition;
+    @apply absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-md border border-line/15 text-fg-muted transition;
     background-color: rgb(var(--ink-900) / 0.92);
   }
   .code-copy:hover,
@@ -264,6 +264,22 @@ html[data-theme='light'] .theme-icon-sun {
   .code-copy[data-state='failed'] {
     border-color: rgb(var(--fg-dim) / 0.5);
     color: rgb(var(--fg));
+  }
+
+  /* The button shows an icon rather than a word, so all three sprites are in the
+     markup and the state picks one, the way the theme toggle picks a sun or a
+     moon. Only one is ever in the layout. */
+  .code-copy .code-copy-icon-done,
+  .code-copy .code-copy-icon-failed {
+    display: none;
+  }
+  .code-copy[data-state='copied'] .code-copy-icon-copy,
+  .code-copy[data-state='failed'] .code-copy-icon-copy {
+    display: none;
+  }
+  .code-copy[data-state='copied'] .code-copy-icon-done,
+  .code-copy[data-state='failed'] .code-copy-icon-failed {
+    display: block;
   }
 
   /* Syntax highlighting. Token colours come from variables, so a block follows
