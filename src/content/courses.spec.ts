@@ -39,15 +39,15 @@ describe('course catalogue', () => {
     }
   })
 
-  it('sorts and groups the catalogue by category, then subcategory', () => {
-    expect(catalogue.map((category) => category.name)).toEqual(['Frameworks', 'Languages'])
-
-    const frameworks = catalogue.find((category) => category.slug === 'frameworks')
-    expect(frameworks?.groups.map((group) => group.name)).toEqual(['Backend', 'Frontend'])
+  it('orders the catalogue by the configured category and subcategory lists', () => {
+    expect(catalogue.map((category) => category.name)).toEqual(['Languages', 'Frameworks'])
 
     const languages = catalogue.find((category) => category.slug === 'languages')
     expect(languages?.groups).toHaveLength(1)
     expect(languages?.groups[0]?.name).toBeNull()
+
+    const frameworks = catalogue.find((category) => category.slug === 'frameworks')
+    expect(frameworks?.groups.map((group) => group.name)).toEqual(['Frontend', 'Backend'])
   })
 
   it('holds every course in exactly one group', () => {

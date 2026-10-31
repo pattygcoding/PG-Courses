@@ -78,6 +78,27 @@ const SUBCATEGORY_NAMES: Record<string, string> = {
   frontend: 'Frontend',
 }
 
+/**
+ * Display order for the catalogue. Ordering is explicit so a folder can be named
+ * for its slug without that name deciding where it appears. Anything not listed
+ * keeps alphabetical order, after the listed names, so adding a folder needs no
+ * change here unless it has to sit in a particular place.
+ */
+const CATEGORY_ORDER: readonly string[] = ['languages', 'frameworks']
+const SUBCATEGORY_ORDER: readonly string[] = ['frontend', 'backend']
+
+/** Position of a slug in an explicit order, with unlisted slugs sorting last. */
+function rank(slug: string, order: readonly string[]): number {
+  const index = order.indexOf(slug)
+  return index === -1 ? order.length : index
+}
+
+/** Order two slugs by an explicit list first, then alphabetically. */
+function compareWithOrder(a: string, b: string, order: readonly string[]): number {
+  const byRank = rank(a, order) - rank(b, order)
+  return byRank === 0 ? a.localeCompare(b) : byRank
+}
+
 function fail(file: string, message: string): never {
   throw new Error(`${file}: ${message}`)
 }
@@ -208,7 +229,10 @@ for (const course of parsedCourses) {
 /** Every course, sorted by title. */
 export const courses: readonly Course[] = parsedCourses
 
-/** Compare two groups so a category's ungrouped courses lead, then the rest by name. */
+/**
+ * Compare two groups so courses sitting directly under a category lead, then the
+ * subcategories in the configured order.
+ */
 function compareGroups(a: [string | null, Course[]], b: [string | null, Course[]]): number {
   if (a[0] === b[0]) {
     return 0
@@ -219,7 +243,12 @@ function compareGroups(a: [string | null, Course[]], b: [string | null, Course[]
   if (b[0] === null) {
     return 1
   }
-  return a[0].localeCompare(b[0])
+  return compareWithOrder(a[0], b[0], SUBCATEGORY_ORDER)
+}
+
+/** Order categories by the configured list, then alphabetically. */
+function compareCategories(a: CourseCategory, b: CourseCategory): number {
+  return compareWithOrder(a.slug, b.slug, CATEGORY_ORDER)
 }
 
 function buildCatalogue(all: readonly Course[]): CourseCategory[] {
@@ -248,7 +277,7 @@ function buildCatalogue(all: readonly Course[]): CourseCategory[] {
           courses: groupCourses,
         })),
     }))
-    .sort((a, b) => a.name.localeCompare(b.name))
+    .sort(compareCategories)
 }
 
 /** The course tree the home page renders, grouped by category and subcategory. */

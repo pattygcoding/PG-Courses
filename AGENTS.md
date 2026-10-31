@@ -185,6 +185,9 @@ Rules for these files:
   mint palette, so it stays crisp at icon size and needs no fonts.
 - The catalogue is derived from the folders, not listed a second time. Add a folder with an
   `intro.md` and the home page picks it up.
+- Display order for categories and subcategories lives in `CATEGORY_ORDER` and `SUBCATEGORY_ORDER`
+  in `src/content/courses.ts`. Adding a folder needs no edit there unless it has to sit in a
+  specific place.
 - Vue 3 single-file components with `<script setup lang="ts">`. TypeScript is strict; do not use
   `any`.
 - Styling uses Tailwind utilities plus the design tokens in `src/styles.css`. Add a colour as a CSS

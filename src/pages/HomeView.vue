@@ -36,14 +36,28 @@ const categoryCount = catalogue.length
         {{ category.name }}
       </h2>
 
-      <div v-for="group in category.groups" :key="group.slug ?? 'all'" class="mt-6">
-        <h3 v-if="group.name" class="micro mb-3 text-accent">{{ group.name }}</h3>
+      <section
+        v-for="group in category.groups"
+        :key="group.slug ?? 'all'"
+        :class="group.name ? 'mt-10' : 'mt-6'"
+        :aria-labelledby="group.slug ? `group-${group.slug}` : undefined"
+      >
+        <!-- A subcategory, such as Frontend or Backend, with a rule that marks the section. -->
+        <h3
+          v-if="group.slug"
+          :id="`group-${group.slug}`"
+          class="mb-5 flex items-center gap-4 text-lg font-semibold tracking-tight text-fg-strong"
+        >
+          {{ group.name }}
+          <span class="h-px flex-1 bg-accent/25" aria-hidden="true" />
+        </h3>
+
         <ul class="grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
           <li v-for="course in group.courses" :key="course.slug" class="flex">
             <CourseCard :course="course" class="flex-1" />
           </li>
         </ul>
-      </div>
+      </section>
     </section>
   </div>
 </template>

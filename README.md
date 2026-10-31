@@ -64,6 +64,11 @@ The folder names are the slugs, so a course's URL (`/courses/<course>/`), its ma
 tree the home page renders. Missing or mistyped fields throw, so a broken page fails the build
 rather than showing up as a blank card.
 
+Display order is explicit. `CATEGORY_ORDER` and `SUBCATEGORY_ORDER` in the same file decide which
+category and subcategory comes first, so a folder can be named for its slug without that name
+deciding where it appears. Anything not listed keeps alphabetical order after the listed names, so
+adding a folder needs no change there unless it has to sit in a particular place.
+
 ## Routes
 
 | Path              | Page                                               |
