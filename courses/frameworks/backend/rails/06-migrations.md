@@ -108,3 +108,105 @@ def change
   change_column_null :books, :genre, false
 end
 ```
+
+
+## The column types
+
+| Rails type | Use for |
+| --- | --- |
+| `string` | short text, 255 characters by convention |
+| `text` | long text |
+| `integer` | whole numbers; ids are `bigint` |
+| `decimal` | money, written as `precision: 8, scale: 2` |
+| `boolean` | flags |
+| `date` | days, such as a due date |
+| `datetime` | moments, such as `created_at` |
+| `references` | a foreign key, with an index, `null: false`, `foreign_key: true` |
+| `json` | structured data, queryable on Postgres |
+
+Three options turn columns into rules the database enforces, and they are worth typing every time:
+
+```ruby
+t.references :book, null: false, foreign_key: true
+t.string :isbn, index: { unique: true }
+t.integer :copies, null: false, default: 0
+```
+
+Without `null: false`, a `book_id` can be nil and nothing stops a loan for a book that does not exist. Without
+`foreign_key: true`, the database does not know the column points at another table. Without the unique index, two rows
+can claim the same ISBN. A model's validations are the readable version of these rules and the database's constraints
+are the enforced one, and a table wants both.
+
+## change, up and down
+
+```ruby
+def change
+  add_column :books, :shelf, :string
+end
+```
+
+`change` is reversible, because Rails knows how to undo `add_column`, `create_table` and `add_index`. When it does not
+know, the migration says so with two methods:
+
+```ruby
+def up
+  execute "UPDATE books SET copies = 0 WHERE copies IS NULL"
+  change_column_null :books, :copies, false
+end
+
+def down
+  change_column_null :books, :copies, true
+end
+```
+
+`execute` with raw SQL is the escape hatch, and it is also where a migration stops being reversible in any meaningful
+sense. A migration that moves data is worth naming so that a reviewer notices.
+
+## schema.rb
+
+```ruby
+ActiveRecord::Schema[8.1].define(version: 2026_10_31_135740) do
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.string "genre"
+    t.integer "copies"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "member_id", null: false
+    t.date "borrowed_on"
+    t.date "due_on"
+    t.index ["book_id"], name: "index_loans_on_book_id"
+  end
+end
+```
+
+`db/schema.rb` is written from the development database every time migrations run, it is checked into the repository,
+and it is never edited by hand: the way to change it is a migration. The test database is loaded from this file rather
+than by replaying every migration, which is why a stale schema turns into a failing suite rather than a failing deploy.
+
+The version at the top is the migration the schema represents, and that is what the test database is compared against:
+
+```text
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 2 pending migrations:
+
+db/migrate/20261031135809_create_users.rb
+db/migrate/20261031135811_create_sessions.rb
+```
+
+That happened in this application: two migrations from the authentication generator were written after the test
+database had been prepared. The fix is the command in the message, then `db:test:prepare` to load the new schema where
+the tests look for it.
+
+## Check yourself
+
+Add a `shelf` column to `books`, then a second migration that makes it `null: false` with a default. Roll both back one
+at a time, checking `db:migrate:status` in between, then confirm both changes appear in `db/schema.rb`.

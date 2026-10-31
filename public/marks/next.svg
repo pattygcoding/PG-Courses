@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="nextjs-mark-title">
+  <title id="nextjs-mark-title">Next.js</title>
+  <!-- The course mark: a triangle with an N drawn inside it. -->
+  <defs>
+    <radialGradient id="nextjs-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#nextjs-mark-glow)" />
+  <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M 512 186 L 846 764 L 178 764 Z" stroke="#8debc4" stroke-width="56" />
+    <path d="M 400 660 V 372 L 664 764" stroke="#4fb894" stroke-width="48" />
+  </g>
+</svg>

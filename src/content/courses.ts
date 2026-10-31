@@ -127,7 +127,7 @@ const SUBCATEGORY_NAMES: Record<string, string> = {
  * change here unless it has to sit in a particular place.
  */
 const CATEGORY_ORDER: readonly string[] = ['languages', 'frameworks']
-const SUBCATEGORY_ORDER: readonly string[] = ['frontend', 'backend']
+const SUBCATEGORY_ORDER: readonly string[] = ['frontend', 'backend', 'fullstack']
 
 /** Lesson filenames: a number for ordering, then the slug. */
 const LESSON_FILE = /^(\d+)-(.+)\.md$/

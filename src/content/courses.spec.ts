@@ -63,7 +63,7 @@ describe('course catalogue', () => {
     expect(languages?.groups[0]?.name).toBeNull()
 
     const frameworks = catalogue.find((category) => category.slug === 'frameworks')
-    expect(frameworks?.groups.map((group) => group.name)).toEqual(['Frontend', 'Backend'])
+    expect(frameworks?.groups.map((group) => group.name)).toEqual(['Frontend', 'Backend', 'Fullstack'])
   })
 
   it('holds every course in exactly one group', () => {
