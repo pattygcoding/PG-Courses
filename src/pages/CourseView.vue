@@ -30,6 +30,17 @@ const breadcrumb = computed(() => {
 /** Reading time across the lessons, rounded to the nearest half hour. */
 const hours = computed(() => Math.round((current.value?.lessonMinutes ?? 0) / 30) / 2)
 
+/** Level plus the lesson count, with the count left out until lessons exist. */
+const summaryLine = computed(() => {
+  const course = current.value
+  if (!course) {
+    return ''
+  }
+  return course.lessons.length > 0
+    ? `${course.level} / ${course.lessons.length} lessons`
+    : course.level
+})
+
 const pageTitle = computed(() =>
   current.value ? `${current.value.title} - ${site.name}` : `Course not found - ${site.name}`,
 )
@@ -61,11 +72,7 @@ function pad(order: number): string {
           />
           <p class="micro text-accent">{{ breadcrumb }}</p>
         </div>
-        <p class="micro eyebrow-tech text-fg-dim">
-          {{ current.level }}
-          <span class="text-gutter">/</span>
-          {{ current.lessons.length }} lessons
-        </p>
+        <p class="micro eyebrow-tech text-fg-dim">{{ summaryLine }}</p>
       </div>
 
       <h1>{{ current.title }}</h1>

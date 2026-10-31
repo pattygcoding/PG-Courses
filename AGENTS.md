@@ -129,6 +129,25 @@ it feels important ("the Platform", "the System"). Product names keep their own 
 Use sentence case in headings: "Add the second borrow" rather than "Add The Second Borrow". Keep
 bold for UI labels and one-line callouts. Do not bold a phrase in every paragraph.
 
+## Course scope
+
+One course covers one subject, and the folder tree already supports the split, so use it rather than
+letting a course sprawl:
+
+- A language course covers the language, its standard library and the tooling that belongs to the
+  language. It sits at `courses/languages/<language>/`.
+- A framework or platform course covers the runtime, the framework, the hosting model and how the
+  result is deployed. It sits at `courses/frameworks/<frontend|backend>/<framework>/`.
+
+C# and .NET are split that way on purpose. The C# course owns the type system, records, generics, LINQ
+and `async` as syntax. The .NET course owns ASP.NET Core, the host, the service container,
+configuration, persistence and packaging. Neither repeats the other, and each names the other once so a
+reader knows where the other half lives.
+
+When a course starts to cover a second subject, that is the signal to split it. Two focused intros read
+better than one that changes subject halfway, and a reader who came for one of them does not have to
+skip past the other.
+
 ## Course and lesson files
 
 A course lives at `courses/<category>/[<subcategory>/]<course>/`. Its first page is `intro.md`, and

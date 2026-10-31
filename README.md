@@ -72,6 +72,10 @@ category and subcategory comes first, so a folder can be named for its slug with
 deciding where it appears. Anything not listed keeps alphabetical order after the listed names, so
 adding a folder needs no change there unless it has to sit in a particular place.
 
+Course scope is deliberate. A language course covers the language and its standard library, and a
+framework course covers the runtime, the framework and hosting. C# and .NET are two courses for that
+reason, and the same split applies whenever a language ships a platform of its own.
+
 ## How lessons work
 
 A lesson is a numbered Markdown file sitting beside the intro:

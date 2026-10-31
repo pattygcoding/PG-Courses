@@ -1,42 +1,45 @@
 ---
 title: .NET
 level: Intermediate
-summary: Build a web service on .NET, from the project layout to a tested HTTP API and the image it runs in.
+summary: Host, configure and ship a web service on .NET, from the request pipeline to a container image that runs anywhere.
 labels:
   - Framework
   - Backend
-  - C#
-minutes: 16
+  - ASP.NET
+minutes: 18
 status: draft
 ---
 
 ## What this course is
 
-.NET is the platform under C#: a runtime, a standard library, a build tool and a hosting model. This
-course covers the parts you use on a server, which means ASP.NET Core for HTTP, dependency injection
-for wiring the pieces together, and the tooling that turns a folder of source into a deployable
-service.
+.NET is the platform a C# program runs on: the runtime, the host, the service container, the
+configuration system and the libraries a server is built from. This course covers the server side,
+which means ASP.NET Core for HTTP and the decisions around it about how a service starts, reads its
+settings, logs what it does and reaches its data.
 
-The language itself lives in the C# and .NET course. This one starts from a working knowledge of C#
-and stays on the platform: configuration, middleware, routing, persistence and hosting.
+The language has its own course. This one assumes you can write C# and stays on the platform:
+middleware, routing, dependency injection, configuration per environment, persistence, testing and
+packaging.
 
 ## Who it is for
 
-You can write C# and want to ship a service with it. Or you have a .NET service to maintain and want
-to understand how its pieces fit before you change them.
+You can write C# and want to ship a service with it, or you have a .NET service to maintain and want to
+understand how its pieces fit before you change them.
 
 ## What you will build
 
-A small HTTP API with typed endpoints, configuration that differs per environment, a data layer, a
-test suite that calls it the way a client would, and a container image that behaves the same on your
-machine as it does in production.
+An HTTP API with typed endpoints, a request pipeline you can explain from the first middleware to the
+response, configuration that differs per environment, a data layer behind an interface, and a test
+suite that calls the endpoints the way a client would. The last chapter puts the finished service in an
+image that behaves the same on your machine as in production.
 
 ## Prerequisites
 
-The .NET SDK, a terminal, and working C#. Docker is needed for the last chapter only.
+The .NET SDK, a terminal, and working C#. The last chapter uses Docker. Familiarity with HTTP helps, and
+nothing in the course assumes you have written a server before.
 
 ## How the pages are ordered
 
-The pages start with the project layout and the host, then move through routing, dependency
-injection, configuration and persistence, and finish with tests and packaging. Each page leaves you
-with a service you can start.
+The pages start with the project layout and the host, then work through routing and the request
+pipeline, the service container and configuration, persistence, logging and tests, and finish with
+packaging and containers. Each page leaves you with a service you can start.

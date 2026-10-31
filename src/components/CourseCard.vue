@@ -7,10 +7,18 @@ const props = defineProps<{
   course: Course
 }>()
 
-const lessons = computed(() => `${props.course.lessons.length} lessons`)
+const lessonCount = computed(() => props.course.lessons.length)
 
 /** Reading time across the lessons, rounded to the nearest half hour. */
 const hours = computed(() => Math.round(props.course.lessonMinutes / 30) / 2)
+
+/** Say how many lessons, or that they are on the way, rather than showing a zero. */
+const lessons = computed(() => {
+  if (lessonCount.value === 0) {
+    return 'Lessons coming'
+  }
+  return lessonCount.value === 1 ? '1 lesson' : `${lessonCount.value} lessons`
+})
 </script>
 
 <template>
@@ -45,7 +53,7 @@ const hours = computed(() => Math.round(props.course.lessonMinutes / 30) / 2)
 
     <span class="flex items-center justify-between gap-3 border-t border-line/10 pt-3">
       <span class="micro text-fg-dim">{{ lessons }}</span>
-      <span class="micro text-fg-dim">about {{ hours }}h</span>
+      <span v-if="lessonCount > 0" class="micro text-fg-dim">about {{ hours }}h</span>
     </span>
   </RouterLink>
 </template>
