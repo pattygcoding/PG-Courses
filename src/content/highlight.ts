@@ -5,6 +5,7 @@ import csharp from 'highlight.js/lib/languages/csharp'
 import css from 'highlight.js/lib/languages/css'
 import dockerfile from 'highlight.js/lib/languages/dockerfile'
 import go from 'highlight.js/lib/languages/go'
+import groovy from 'highlight.js/lib/languages/groovy'
 import ini from 'highlight.js/lib/languages/ini'
 import java from 'highlight.js/lib/languages/java'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -31,6 +32,7 @@ const LANGUAGES: Record<string, LanguageFn> = {
   css,
   dockerfile,
   go,
+  groovy,
   ini,
   java,
   javascript,
@@ -77,13 +79,16 @@ const ALIASES: Record<string, string> = {
   cfg: 'ini',
   conf: 'ini',
   console: 'bash',
+  gradle: 'groovy',
   html: 'xml',
   js: 'javascript',
+  properties: 'ini',
   sh: 'bash',
   shell: 'bash',
   svg: 'xml',
   toml: 'ini',
   ts: 'typescript',
+  yml: 'yaml',
 }
 
 for (const [alias, target] of Object.entries(ALIASES)) {

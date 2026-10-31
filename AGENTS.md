@@ -144,6 +144,10 @@ and `async` as syntax. The .NET course owns ASP.NET Core, the host, the service 
 configuration, persistence and packaging. Neither repeats the other, and each names the other once so a
 reader knows where the other half lives.
 
+Java and Spring Boot are split the same way. The Java course owns the language, the standard library, the
+JDK tools and the JVM. The Spring Boot course owns the application context, the web layer, JPA, security,
+testing and the container image.
+
 When a course starts to cover a second subject, that is the signal to split it. Two focused intros read
 better than one that changes subject halfway, and a reader who came for one of them does not have to
 skip past the other.
