@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="html-mark-title">
+  <title id="html-mark-title">HTML</title>
+  <!-- The course mark: the closing-tag glyph, drawn from plain shapes so no font is needed. -->
+  <defs>
+    <radialGradient id="html-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#html-mark-glow)" />
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="44">
+    <path d="M 420 380 L 300 512 L 420 644" stroke="#8debc4" />
+    <path d="M 604 380 L 724 512 L 604 644" stroke="#8debc4" />
+    <path d="M 560 360 L 464 664" stroke="#4fb894" />
+  </g>
+</svg>
