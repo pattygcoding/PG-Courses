@@ -1,0 +1,18 @@
+# Normalise line endings in the repository; keep text files as LF.
+* text=auto eol=lf
+
+# Windows-only scripts and binaries should keep their native behaviour.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Mark generated assets as binary so diffs stay readable.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.wasm binary
+
+# Keep vendored and generated trees out of language stats and diffs.
+package-lock.json -diff linguist-generated
+dist/** -diff linguist-vendored

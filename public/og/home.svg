@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Patrick Goodwin Courses">
+  <defs>
+    <radialGradient id="glow" cx="78%" cy="-8%" r="70%">
+      <stop offset="0%" stop-color="#8debc4" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#05070c" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <text x="96" y="300" font-family="Inter, system-ui, sans-serif" font-size="28" letter-spacing="6" fill="#5c6470">
+    COURSES AND LESSON NOTES
+  </text>
+  <text x="96" y="392" font-family="Inter, system-ui, sans-serif" font-size="76" font-weight="700" fill="#f2f5f3">
+    Patrick Goodwin
+  </text>
+  <text x="96" y="478" font-family="Inter, system-ui, sans-serif" font-size="76" font-weight="700" fill="#8debc4">
+    Courses
+  </text>
+  <text x="96" y="546" font-family="JetBrains Mono, monospace" font-size="24" fill="#8a93a0">
+    Rust / TypeScript / WebAssembly / the web
+  </text>
+</svg>

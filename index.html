@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patrick Goodwin Courses</title>
+    <link rel="canonical" href="https://courses.pattygcoding.com/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#05070c" />
+    <meta name="author" content="Patrick Goodwin" />
+    <!--
+      Link previews (LinkedIn, Slack, Discord, X) read these from the raw HTML and
+      do not run JavaScript.  Replace the og:image with a real card once artwork
+      exists; the tags are here so nothing has to be restructured later.
+    -->
+    <meta
+      name="description"
+      content="Short, project-driven courses on Rust, TypeScript, WebAssembly and the web, written by Patrick Goodwin."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Patrick Goodwin Courses" />
+    <meta property="og:title" content="Patrick Goodwin Courses" />
+    <meta
+      property="og:description"
+      content="Short, project-driven courses on Rust, TypeScript, WebAssembly and the web, written by Patrick Goodwin."
+    />
+    <meta property="og:url" content="https://courses.pattygcoding.com/" />
+    <meta property="og:image" content="https://courses.pattygcoding.com/og/home.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:alt" content="Patrick Goodwin Courses" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Patrick Goodwin Courses" />
+    <meta
+      name="twitter:description"
+      content="Short, project-driven courses on Rust, TypeScript, WebAssembly and the web, written by Patrick Goodwin."
+    />
+    <meta name="twitter:image" content="https://courses.pattygcoding.com/og/home.svg" />
+    <script>
+      // Pick the theme before first paint so there is no flash of the wrong
+      // palette.  The key matches src/composables/useTheme.ts and the value set
+      // here is the one the app reads back on boot.
+      ;(function () {
+        var stored = null
+        try {
+          stored = localStorage.getItem('pg-courses-theme')
+        } catch (error) {
+          stored = null
+        }
+        var prefersLight =
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+        document.documentElement.setAttribute(
+          'data-theme',
+          stored === 'light' || stored === 'dark' ? stored : prefersLight ? 'light' : 'dark',
+        )
+      })()
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

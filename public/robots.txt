@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+# Generally allow crawlers to index the public site.
+User-agent: *
+Allow: /
+
+# Point search engines at the sitemap.
+Sitemap: https://courses.pattygcoding.com/sitemap.xml
