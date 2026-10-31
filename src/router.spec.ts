@@ -6,6 +6,7 @@ describe('router', () => {
     ['/', 'home'],
     ['/courses/python', 'course'],
     ['/courses/vue', 'course'],
+    ['/courses/vue/', 'course'],
     ['/some/unknown/path', 'not-found'],
   ])('resolves %s to the %s route', (path, name) => {
     expect(router.resolve(path).name).toBe(name)

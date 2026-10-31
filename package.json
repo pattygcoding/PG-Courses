@@ -7,7 +7,7 @@
   "description": "Course and lesson site for pattygcoding.com, built with Vue and TypeScript.",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build && node scripts/copy-404.mjs",
+    "build": "vue-tsc --noEmit && vite build && node scripts/generate-pages.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",

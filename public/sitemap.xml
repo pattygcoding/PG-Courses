@@ -6,37 +6,37 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://courses.pattygcoding.com/courses/csharp</loc>
+    <loc>https://courses.pattygcoding.com/courses/csharp/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://courses.pattygcoding.com/courses/express</loc>
+    <loc>https://courses.pattygcoding.com/courses/express/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://courses.pattygcoding.com/courses/fastapi</loc>
+    <loc>https://courses.pattygcoding.com/courses/fastapi/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://courses.pattygcoding.com/courses/java</loc>
+    <loc>https://courses.pattygcoding.com/courses/java/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://courses.pattygcoding.com/courses/python</loc>
+    <loc>https://courses.pattygcoding.com/courses/python/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://courses.pattygcoding.com/courses/react</loc>
+    <loc>https://courses.pattygcoding.com/courses/react/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://courses.pattygcoding.com/courses/vue</loc>
+    <loc>https://courses.pattygcoding.com/courses/vue/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

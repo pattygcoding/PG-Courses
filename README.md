@@ -39,7 +39,7 @@ courses/                The courses themselves, one folder per course
   frameworks/frontend/vue/intro.md
 public/marks/           One SVG mark per course, named after the course slug
 public/                 CNAME, robots.txt, sitemap.xml, favicon, og image
-scripts/copy-404.mjs    Copies index.html to 404.html after the build
+scripts/generate-pages.mjs Writes a page per course route plus 404.html after the build
 src/components/         Header, footer, theme toggle, icon link, course card
 src/composables/        useTheme, the light and dark theme store
 src/content/courses.ts  Reads the courses/ tree into the catalogue
@@ -57,7 +57,7 @@ A course is a folder with an `intro.md` inside it:
 courses/<category>/[<subcategory>/]<course>/intro.md
 ```
 
-The folder names are the slugs, so a course's URL (`/courses/<course>`), its mark
+The folder names are the slugs, so a course's URL (`/courses/<course>/`), its mark
 (`/marks/<course>.svg`) and its place in the catalogue all come from where the folder sits.
 
 `src/content/courses.ts` globs every `intro.md`, parses the frontmatter with js-yaml, and builds the
@@ -66,11 +66,11 @@ rather than showing up as a blank card.
 
 ## Routes
 
-| Path             | Page                                               |
-| ---------------- | -------------------------------------------------- |
-| `/`              | The catalogue, grouped by category and subcategory |
-| `/courses/:slug` | A course's intro page, rendered from its Markdown  |
-| anything else    | A 404 page that links back to the catalogue        |
+| Path              | Page                                               |
+| ----------------- | -------------------------------------------------- |
+| `/`               | The catalogue, grouped by category and subcategory |
+| `/courses/:slug/` | A course's intro page, rendered from its Markdown  |
+| anything else     | A 404 page that links back to the catalogue        |
 
 ## Adding a course
 
@@ -92,9 +92,10 @@ Two files support the static host:
 - `public/CNAME` sets the custom domain to `courses.pattygcoding.com`. Point a `CNAME` DNS record
   for that host at `pattygcoding.github.io`, and keep the custom domain set in the repository's
   Pages settings.
-- `scripts/copy-404.mjs` copies `index.html` to `404.html` after the build. GitHub Pages serves
-  `404.html` for any path it cannot resolve on disk, so a refresh on `/courses/vue` boots the app and
-  the router renders the right page.
+- `scripts/generate-pages.mjs` writes a copy of `index.html` into `dist/courses/<slug>/` for every
+  course, and one to `404.html`. GitHub Pages serves a file per URL, so without those copies a
+  refresh on `/courses/vue/` would show the host's own error page. That is also why course links end
+  in a trailing slash: the URL then resolves to the generated file directly.
 
 ## Writing rules
 

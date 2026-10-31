@@ -13,7 +13,7 @@ defineProps<{
     text.  The mark carries no alt text because the title beside it names it.
   -->
   <RouterLink
-    :to="`/courses/${course.slug}`"
+    :to="`/courses/${course.slug}/`"
     class="card group flex flex-col gap-4 p-5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/40"
   >
     <span class="flex items-start justify-between gap-3">

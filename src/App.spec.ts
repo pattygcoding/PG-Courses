@@ -48,7 +48,7 @@ describe('App shell', () => {
   it('links every course card to its own page', async () => {
     const wrapper = await mountApp()
     for (const course of courses) {
-      expect(wrapper.find(`a[href="/courses/${course.slug}"]`).exists()).toBe(true)
+      expect(wrapper.find(`a[href="/courses/${course.slug}/"]`).exists()).toBe(true)
     }
   })
 
