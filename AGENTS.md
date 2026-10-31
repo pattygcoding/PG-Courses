@@ -217,6 +217,27 @@ Rules for course and lesson files:
 - Show the output of a snippet when the output is the point, and only when you have run it.
 - No trailing whitespace, exactly one trailing newline.
 
+## Code blocks
+
+Every fenced block is highlighted and carries a copy button, so write a block for a reader who will
+paste it into a terminal.
+
+- Declare a language on every fence. `text` for program output and `pycon` for a Python session
+  transcript are deliberate choices: neither is coloured, and that is correct for the content.
+- Put output in its own block rather than as a trailing comment inside the code, so the copy button
+  hands over something that runs.
+- Leave the shell prompt out of a `bash` block. A `$` or `>>>` in the copied text has to be deleted
+  by hand, and the prompt is not part of the command.
+- Register a language before fencing with it. Import its grammar in `src/content/highlight.ts`, add
+  it to `LANGUAGES`, and register any alias you intend to type. A test walks every course and every
+  lesson and fails with the file name and the language that is missing, so an unregistered fence is
+  caught before it ships.
+- When highlight.js has no grammar for the language, write a small one in that file, as `pycon` and
+  `gitignore` do. Marking the one part worth marking reads better than forcing an unrelated grammar
+  onto the content.
+- Keep a block to what fits in one look. Split a long listing into labelled steps, and say what
+  changed between them.
+
 ## Repository conventions
 
 - Each course has a mark at `public/marks/<course-slug>.svg`, drawn from plain shapes in the navy and
@@ -232,7 +253,10 @@ Rules for course and lesson files:
   `any`.
 - Styling uses Tailwind utilities plus the design tokens in `src/styles.css`. Add a colour as a CSS
   variable, never as a hex value inside a component.
-- Rendered Markdown is styled by the `.prose` block in `src/styles.css`.
+- Rendered Markdown is styled by the `.prose` block in `src/styles.css`, and code is coloured by
+  highlight.js with token colours defined as CSS variables there.
+- A lesson page wraps its body in `MarkdownBody`, which owns the delegated handler for the copy
+  buttons the renderer puts beside each code block.
 - Every page sits inside a `.shell` wrapper and opens with a `.page-heading` block.
 - Tests are colocated as `*.spec.ts` next to the module they cover. Run them with `npm test`. The
   catalogue test fails when a mark is missing, so run it after adding a course.
@@ -245,7 +269,8 @@ Rules for course and lesson files:
 3. No emojis.
 4. No marketing vocabulary from the list above.
 5. Headings are sentence case.
-6. Every code block declares a language.
+6. Every fenced block declares a language, and that language is registered in
+   `src/content/highlight.ts`.
 7. `labels` holds two or three short tags, and `status` is honest.
 8. A mark exists at `public/marks/<course-slug>.svg`.
 9. Lesson files are named `<number>-<slug>.md` and every lesson carries a `chapter`.

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, watch } from 'vue'
 import { RouterLink } from 'vue-router'
+import MarkdownBody from '../components/MarkdownBody.vue'
 import { findCourse } from '../content/courses'
 import { renderPage } from '../content/markdown'
 import { site } from '../site'
@@ -82,7 +83,7 @@ function pad(order: number): string {
       </RouterLink>
     </header>
 
-    <article v-if="intro" class="prose mt-10 max-w-3xl" v-html="intro.html" />
+    <MarkdownBody v-if="intro" :html="intro.html" class="mt-10 max-w-3xl" />
 
     <!-- The contents list. Numbered so a reader can track their place. -->
     <section v-if="current.lessons.length" class="mt-16" aria-labelledby="contents-heading">

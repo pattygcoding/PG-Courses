@@ -16,6 +16,7 @@ mint accent, Inter for text and JetBrains Mono for technical labels, with a ligh
 - Vue Router for client-side routing
 - Tailwind CSS v3 with the design tokens in `src/styles.css`
 - markdown-it for rendering course pages, js-yaml for their frontmatter
+- highlight.js for code colouring, with only the languages the courses use registered
 - Vitest and Vue Test Utils for unit tests
 
 ## Commands
@@ -41,13 +42,14 @@ courses/                The courses themselves, one folder per course
 public/marks/           One SVG mark per course, named after the course slug
 public/                 CNAME, robots.txt, favicon, og image
 scripts/generate-pages.mjs Writes a page per route and generates the sitemap
-src/components/         Header, footer, theme toggle, icon link, course card
-src/composables/        useTheme, the light and dark theme store
+src/components/         Header, footer, theme toggle, icon link, course card, MarkdownBody
+src/composables/        useTheme, useCodeCopy
 src/content/courses.ts  Reads the courses/ tree into the catalogue and contents lists
-src/content/markdown.ts Renders a page body to HTML and reports its headings
+src/content/highlight.ts Registers the languages a lesson may fence
+src/content/markdown.ts Renders a page body to highlighted HTML, with its headings
 src/pages/              Home (the catalogue), course, lesson, 404
 src/router.ts           Routes and document titles
-src/styles.css          Design tokens, `.prose` and shared component classes
+src/styles.css          Design tokens, `.prose`, code blocks and the syntax colours
 ```
 
 ## How the catalogue works
@@ -90,6 +92,10 @@ Every course page renders a contents list from those files. Each lesson page get
 built from its own `##` and `###` headings, and previous and next links, so a reader can move through a
 long course without going back to the contents.
 
+Code blocks are coloured with highlight.js and each one carries a copy button, so a snippet can be
+pasted into a terminal without selecting it. The languages are registered by hand in
+`src/content/highlight.ts`, which keeps the bundle to the languages the courses actually use.
+
 ## Routes
 
 | Path                        | Page                                               |
@@ -115,7 +121,9 @@ build`, `## Prerequisites`, `## How the pages are ordered`.
    the reading order.
 2. Write the frontmatter: `title`, `summary`, `chapter`, `minutes`, `status`.
 3. Start the body at `##` and end it with `## Check yourself`.
-4. Run `npm run typecheck && npm test`. The lesson tests check the numbering, the chapters, the slugs
+4. Register any new fence language in `src/content/highlight.ts`. The test suite fails and names the
+   language if you forget.
+5. Run `npm run typecheck && npm test`. The lesson tests check the numbering, the chapters, the slugs
    and that every Markdown file on disk was loaded.
 
 ## Deployment

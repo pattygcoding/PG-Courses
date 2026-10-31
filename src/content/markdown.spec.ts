@@ -44,6 +44,36 @@ describe('renderPage', () => {
     expect(html).toContain('language-rust')
   })
 
+  it('highlights a known language and gives the block a copy button', () => {
+    const { html } = renderPage('```python\ndef add(a, b):\n    return a + b\n```')
+
+    expect(html).toContain('class="code-block"')
+    expect(html).toContain('data-copy')
+    expect(html).toContain('language-python')
+    expect(html).toContain('hljs-keyword')
+  })
+
+  it('gives a plain text block a copy button without colouring it', () => {
+    const { html } = renderPage('```text\nsome output\n```')
+
+    expect(html).toContain('data-copy')
+    expect(html).not.toContain('hljs-')
+  })
+
+  it('marks the prompt lines of a Python session transcript', () => {
+    const { html } = renderPage('```pycon\n>>> 1 + 1\n2\n```')
+
+    expect(html).toContain('hljs-meta')
+    expect(html).toContain('&gt;&gt;&gt;')
+  })
+
+  it('escapes a fence for a language nobody registered', () => {
+    const { html } = renderPage('```brainfuck\n++[>++<-]\n```')
+
+    expect(html).toContain('++[&gt;++&lt;-]')
+    expect(html).not.toContain('hljs-')
+  })
+
   it('escapes raw HTML instead of injecting it', () => {
     const { html } = renderPage('<script>alert(1)</script>')
     expect(html).not.toContain('<script>')

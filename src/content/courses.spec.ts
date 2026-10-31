@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { catalogue, courses, findCourse, findLesson } from './courses'
+import { isHighlighted } from './highlight'
 
 /** Resolve a public path such as "/marks/python.svg" against the project root. */
 function publicFile(publicPath: string): string {
@@ -151,6 +152,30 @@ describe('lessons', () => {
 
       expect(files, `${course.slug} intro`).toContain('intro.md')
       expect(files.length, `${course.slug} files on disk`).toBe(course.lessons.length + 1)
+    }
+  })
+
+  it('fences only languages the highlighter knows, apart from plain output', () => {
+    const fence = /^```([\w+#.-]+)/gm
+
+    const pages: [string, string][] = [
+      ...courses.map((course) => [`${course.slug}/intro`, course.body] as [string, string]),
+      ...courses.flatMap((course) =>
+        course.lessons.map(
+          (lesson) => [`${course.slug}/${lesson.slug}`, lesson.body] as [string, string],
+        ),
+      ),
+    ]
+
+    for (const [where, body] of pages) {
+      for (const match of body.matchAll(fence)) {
+        const language = match[1] as string
+        const known = isHighlighted(language) || language === 'text'
+        expect(
+          known,
+          `${where} fences "${language}", which is not registered in src/content/highlight.ts`,
+        ).toBe(true)
+      }
     }
   })
 

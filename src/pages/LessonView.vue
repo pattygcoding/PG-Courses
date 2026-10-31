@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, watch } from 'vue'
 import { RouterLink } from 'vue-router'
+import MarkdownBody from '../components/MarkdownBody.vue'
 import { findCourse, type Lesson } from '../content/courses'
 import { renderPage } from '../content/markdown'
 import { site } from '../site'
@@ -84,7 +85,7 @@ watch(pageTitle, (value) => {
       </ul>
     </nav>
 
-    <article class="prose mt-10 max-w-3xl" v-html="page.html" />
+    <MarkdownBody :html="page.html" class="mt-10 max-w-3xl" />
 
     <nav
       class="mt-14 grid gap-4 border-t border-line/10 pt-8 sm:grid-cols-2"

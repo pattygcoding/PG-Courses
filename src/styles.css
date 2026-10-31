@@ -32,6 +32,11 @@
   --sel-fg: #f2f5f3;
   --glow-a: rgba(141, 235, 196, 0.07);
   --glow-b: rgba(105, 140, 200, 0.06);
+  /* Syntax highlighting. Keywords and titles reuse the accent and foreground
+     tokens; these three are the ones that need a value of their own. */
+  --syn-comment: 107 116 130;
+  --syn-string: 111 217 175;
+  --syn-number: 185 244 218;
 }
 html[data-theme='light'] {
   color-scheme: light;
@@ -55,6 +60,9 @@ html[data-theme='light'] {
   --sel-fg: #0b1015;
   --glow-a: rgba(12, 150, 106, 0.1);
   --glow-b: rgba(96, 132, 196, 0.12);
+  --syn-comment: 132 142 154;
+  --syn-string: 16 122 92;
+  --syn-number: 8 96 72;
 }
 
 ::-webkit-scrollbar {
@@ -230,6 +238,83 @@ html[data-theme='light'] .theme-icon-sun {
   }
   .prose td {
     @apply border-b border-line/10 py-2 pr-4 align-top;
+  }
+
+  /* A code block is a wrapper plus a pre, so the copy button can sit outside the
+     area that scrolls sideways without moving with the code. */
+  .code-block {
+    @apply relative mb-5;
+  }
+  .code-block > pre {
+    @apply mb-0;
+  }
+
+  .code-copy {
+    @apply micro absolute right-2 top-2 z-10 rounded-md border border-line/15 px-2 py-1 text-fg-muted transition;
+    background-color: rgb(var(--ink-900) / 0.92);
+  }
+  .code-copy:hover,
+  .code-copy:focus-visible {
+    @apply border-accent/40 text-accent;
+  }
+  .code-copy[data-state='copied'] {
+    border-color: rgb(var(--accent) / 0.5);
+    color: rgb(var(--accent));
+  }
+  .code-copy[data-state='failed'] {
+    border-color: rgb(var(--fg-dim) / 0.5);
+    color: rgb(var(--fg));
+  }
+
+  /* Syntax highlighting. Token colours come from variables, so a block follows
+     the light and dark themes like everything else. */
+  .hljs-comment,
+  .hljs-quote {
+    color: rgb(var(--syn-comment));
+    font-style: italic;
+  }
+  .hljs-keyword,
+  .hljs-literal,
+  .hljs-type,
+  .hljs-built_in,
+  .hljs-section,
+  .hljs-selector-tag,
+  .hljs-doctag {
+    color: rgb(var(--accent));
+  }
+  .hljs-string,
+  .hljs-regexp,
+  .hljs-addition,
+  .hljs-symbol,
+  .hljs-meta .hljs-string {
+    color: rgb(var(--syn-string));
+  }
+  .hljs-number,
+  .hljs-bullet,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-attr,
+  .hljs-attribute,
+  .hljs-property {
+    color: rgb(var(--syn-number));
+  }
+  .hljs-title,
+  .hljs-title.function_,
+  .hljs-title.class_,
+  .hljs-name,
+  .hljs-params {
+    color: rgb(var(--fg-strong));
+  }
+  .hljs-meta,
+  .hljs-punctuation,
+  .hljs-operator {
+    color: rgb(var(--fg-muted));
+  }
+  .hljs-emphasis {
+    font-style: italic;
+  }
+  .hljs-strong {
+    font-weight: 600;
   }
 
   /* Heading anchors are jump targets, so leave room for the sticky header. */

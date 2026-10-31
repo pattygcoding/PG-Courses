@@ -1,19 +1,45 @@
 import MarkdownIt from 'markdown-it'
+import { highlightCode } from './highlight'
 
 /**
- * One renderer for every page.  Three options are deliberate:
+ * One renderer for every page.  Four things are deliberate:
  *
  * - `html` stays off, so raw HTML in a page is escaped rather than injected.
  * - `typographer` stays off, because it would substitute en dashes and ellipses,
  *   and the house rules in AGENTS.md ban those.
- * - headings get an `id`, added in `renderPage` below, so a long lesson can offer
- *   an "on this page" list that links to its own sections.
+ * - `highlight` colours every fenced block, and a language nobody registered
+ *   falls back to plain text instead of failing.
+ * - fenced blocks are wrapped, so a copy button can sit beside the block rather
+ *   than inside the area that scrolls sideways.
  */
 const renderer = new MarkdownIt({
   html: false,
   linkify: true,
   typographer: false,
+  highlight: (code, language) => highlightCode(code, language),
 })
+
+/**
+ * The button the copy handler in `useCodeCopy` looks for. It carries no code of
+ * its own: the handler reads the text from the block it sits in, so nothing is
+ * duplicated into an attribute.
+ */
+const COPY_BUTTON =
+  '<button type="button" class="code-copy" data-copy aria-label="Copy this code to the clipboard">Copy</button>'
+
+const rules = renderer.renderer.rules
+const baseFence = rules.fence
+const baseCodeBlock = rules.code_block
+
+rules.fence = (tokens, index, options, env, self) => {
+  const body = baseFence ? baseFence(tokens, index, options, env, self) : ''
+  return `<div class="code-block">${COPY_BUTTON}${body}</div>\n`
+}
+
+rules.code_block = (tokens, index, options, env, self) => {
+  const body = baseCodeBlock ? baseCodeBlock(tokens, index, options, env, self) : ''
+  return `<div class="code-block">${COPY_BUTTON}${body}</div>\n`
+}
 
 export interface Heading {
   /** Depth of the heading, 2 or 3. */

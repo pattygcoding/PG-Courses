@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="dotnet-mark-title">
+  <title id="dotnet-mark-title">.NET</title>
+  <!-- The course mark: the platform hexagon, with a node and a chevron inside. -->
+  <defs>
+    <radialGradient id="dotnet-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#dotnet-mark-glow)" />
+  <g>
+    <path
+      d="M 512 176 L 800 342 V 682 L 512 848 L 224 682 V 342 Z"
+      fill="none"
+      stroke="#8debc4"
+      stroke-width="56"
+      stroke-linejoin="round"
+    />
+    <circle cx="428" cy="512" r="54" fill="#6fd9af" />
+    <path
+      d="M 556 428 L 656 512 L 556 596"
+      fill="none"
+      stroke="#4fb894"
+      stroke-width="56"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+</svg>
