@@ -9,7 +9,7 @@ export const site = {
   /** Canonical origin.  Used for titles and meta tags. */
   url: 'https://courses.pattygcoding.com',
   description:
-    'Short, project-driven courses on Rust, TypeScript, WebAssembly and the web, written by Patrick Goodwin.',
+    'Short, project-driven courses on Python, Java, C# and the frameworks around them, written by Patrick Goodwin.',
   author: 'Patrick Goodwin',
   /** Escape hatch back to the portfolio, mirroring the Arcade site. */
   portfolioUrl: 'https://pattygcoding.com',

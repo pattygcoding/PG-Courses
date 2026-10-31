@@ -1,18 +1,21 @@
 # PG Courses
 
-The course and lesson site for [pattygcoding.com](https://pattygcoding.com), published at
+The course site for [pattygcoding.com](https://pattygcoding.com), published at
 [courses.pattygcoding.com](https://courses.pattygcoding.com).
 
-Right now this is a blank landing page with the design in place: a navy canvas, a mint accent,
-Inter for text and JetBrains Mono for technical labels, a light and dark theme, and the header and
-footer shell. Course content comes later.
+Courses are written as Markdown files in this repository. The home page is the catalogue, grouped by
+category, and each course opens with an intro page rendered from its own Markdown. The design is
+shared with [Arcade-PG-Website](https://github.com/pattygcoding/Arcade-PG-Website): a navy canvas, a
+mint accent, Inter for text and JetBrains Mono for technical labels, with a light and dark theme.
 
 ## Stack
 
 - Vue 3 with `<script setup lang="ts">`
 - TypeScript in strict mode
 - Vite for the dev server and the production build
+- Vue Router for client-side routing
 - Tailwind CSS v3 with the design tokens in `src/styles.css`
+- markdown-it for rendering course pages, js-yaml for their frontmatter
 - Vitest and Vue Test Utils for unit tests
 
 ## Commands
@@ -31,18 +34,53 @@ footer shell. Course content comes later.
 ## Project layout
 
 ```
-src/
-  components/        Header, footer, theme toggle and the icon-link button
-  composables/       useTheme, the light and dark theme store
-  App.vue            Shell: header, the page body, footer
-  main.ts            Mounts the app
-  site.ts            Site-wide constants
-  styles.css         Design tokens and shared component classes
-public/              CNAME, robots.txt, sitemap.xml, favicon, og image
-scripts/copy-404.mjs Copies index.html to 404.html after the build
+courses/                The courses themselves, one folder per course
+  languages/python/intro.md
+  frameworks/frontend/vue/intro.md
+public/marks/           One SVG mark per course, named after the course slug
+public/                 CNAME, robots.txt, sitemap.xml, favicon, og image
+scripts/copy-404.mjs    Copies index.html to 404.html after the build
+src/components/         Header, footer, theme toggle, icon link, course card
+src/composables/        useTheme, the light and dark theme store
+src/content/courses.ts  Reads the courses/ tree into the catalogue
+src/content/markdown.ts Renders a page body to HTML
+src/pages/              Home (the catalogue), course, 404
+src/router.ts           Routes and document titles
+src/styles.css          Design tokens, `.prose` and shared component classes
 ```
 
-The page body is the empty `<main>` in `src/App.vue`. That is where content goes.
+## How the catalogue works
+
+A course is a folder with an `intro.md` inside it:
+
+```
+courses/<category>/[<subcategory>/]<course>/intro.md
+```
+
+The folder names are the slugs, so a course's URL (`/courses/<course>`), its mark
+(`/marks/<course>.svg`) and its place in the catalogue all come from where the folder sits.
+
+`src/content/courses.ts` globs every `intro.md`, parses the frontmatter with js-yaml, and builds the
+tree the home page renders. Missing or mistyped fields throw, so a broken page fails the build
+rather than showing up as a blank card.
+
+## Routes
+
+| Path             | Page                                               |
+| ---------------- | -------------------------------------------------- |
+| `/`              | The catalogue, grouped by category and subcategory |
+| `/courses/:slug` | A course's intro page, rendered from its Markdown  |
+| anything else    | A 404 page that links back to the catalogue        |
+
+## Adding a course
+
+1. Create `courses/<category>/<course>/intro.md` (add a subcategory folder in the middle if the
+   category needs one).
+2. Write the frontmatter: `title`, `level`, `summary`, `labels`, `minutes`, `status`.
+3. Use the standard sections: `## What this course is`, `## Who it is for`, `## What you will
+build`, `## Prerequisites`, `## How the pages are ordered`.
+4. Add a mark at `public/marks/<course>.svg`, drawn from plain shapes in the navy and mint palette.
+5. Run `npm run typecheck && npm test`. The catalogue test fails if the mark is missing.
 
 ## Deployment
 
@@ -54,13 +92,15 @@ Two files support the static host:
 - `public/CNAME` sets the custom domain to `courses.pattygcoding.com`. Point a `CNAME` DNS record
   for that host at `pattygcoding.github.io`, and keep the custom domain set in the repository's
   Pages settings.
-- `scripts/copy-404.mjs` copies `index.html` to `404.html` after the build, so an unknown path still
-  serves the app instead of the host's default error page.
+- `scripts/copy-404.mjs` copies `index.html` to `404.html` after the build. GitHub Pages serves
+  `404.html` for any path it cannot resolve on disk, so a refresh on `/courses/vue` boots the app and
+  the router renders the right page.
 
 ## Writing rules
 
-**Before writing any lesson or page copy, read [AGENTS.md](./AGENTS.md)**. It lists the patterns to
-avoid in this repository, including em dashes, the "it is not X, it is Y" construction, and emojis.
+**Before writing any course or lesson content, read [AGENTS.md](./AGENTS.md)**. It lists the
+patterns to avoid in this repository, including em dashes, the "it is not X, it is Y" construction,
+and emojis, with examples of what to write instead.
 
 ## Licence
 

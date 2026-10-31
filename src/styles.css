@@ -172,6 +172,54 @@ html[data-theme='light'] .theme-icon-sun {
     border-color: rgb(var(--accent) / 0.4);
     color: rgb(var(--accent));
   }
+
+  /* Rendered Markdown.  Written out rather than pulled from a typography
+     plugin so the spacing matches the rest of the site. */
+  .prose {
+    @apply text-sm leading-relaxed text-fg-soft sm:text-base;
+  }
+  .prose > :first-child {
+    @apply mt-0;
+  }
+  .prose h2 {
+    @apply mb-3 mt-10 text-xl font-semibold tracking-tight text-fg-strong;
+  }
+  .prose h3 {
+    @apply mb-2 mt-8 text-base font-semibold text-fg-strong;
+  }
+  .prose p {
+    @apply mb-4;
+  }
+  .prose ul {
+    @apply mb-4 list-disc space-y-2 pl-5;
+  }
+  .prose ol {
+    @apply mb-4 list-decimal space-y-2 pl-5;
+  }
+  .prose li::marker {
+    color: rgb(var(--accent));
+  }
+  .prose a {
+    @apply text-accent underline underline-offset-4;
+  }
+  .prose strong {
+    @apply font-semibold text-fg-strong;
+  }
+  .prose code {
+    @apply rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[0.85em] text-fg-strong;
+  }
+  .prose pre {
+    @apply mb-4 overflow-x-auto rounded-lg border border-line/10 bg-console p-4;
+  }
+  .prose pre code {
+    @apply bg-transparent p-0 text-fg-soft;
+  }
+  .prose blockquote {
+    @apply mb-4 border-l-2 border-accent/40 pl-4 text-fg-muted;
+  }
+  .prose hr {
+    @apply my-8 border-line/10;
+  }
 }
 
 /* Respect a visitor who has asked the system to cut motion. */

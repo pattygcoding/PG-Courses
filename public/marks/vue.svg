@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="vue-mark-title">
+  <title id="vue-mark-title">Vue</title>
+  <!-- The course mark: two nested chevrons. -->
+  <defs>
+    <radialGradient id="vue-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#vue-mark-glow)" />
+  <g>
+    <path d="M 200 260 H 352 L 512 540 L 672 260 H 824 L 512 800 Z" fill="#4fb894" />
+    <path d="M 352 260 H 448 L 512 372 L 576 260 H 672 L 512 540 Z" fill="#8debc4" />
+  </g>
+</svg>

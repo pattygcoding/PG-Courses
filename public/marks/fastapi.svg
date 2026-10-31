@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="fastapi-mark-title">
+  <title id="fastapi-mark-title">FastAPI</title>
+  <!-- The course mark: a rocket with fins, a window and a flame. -->
+  <defs>
+    <radialGradient id="fastapi-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#fastapi-mark-glow)" />
+  <g>
+    <path d="M 512 150 C 620 250 664 400 664 560 V 640 H 360 V 560 C 360 400 404 250 512 150 Z" fill="#8debc4" />
+    <path d="M 360 520 L 268 700 L 360 660 Z" fill="#4fb894" />
+    <path d="M 664 520 L 756 700 L 664 660 Z" fill="#4fb894" />
+    <circle cx="512" cy="440" r="66" fill="#06090e" />
+    <circle cx="512" cy="440" r="66" fill="none" stroke="#4fb894" stroke-width="22" />
+    <rect x="440" y="664" width="144" height="58" rx="20" fill="#4fb894" />
+    <path d="M 468 756 C 468 826 512 880 512 880 C 512 880 556 826 556 756 Z" fill="#6fd9af" />
+  </g>
+</svg>

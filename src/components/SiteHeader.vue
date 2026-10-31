@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import { site } from '../site'
 import IconLink from './IconLink.vue'
 import ThemeToggle from './ThemeToggle.vue'
@@ -7,12 +8,12 @@ import ThemeToggle from './ThemeToggle.vue'
 <template>
   <header class="sticky top-0 z-30 border-b border-line/5 bg-ink-900/80 backdrop-blur">
     <div class="shell flex flex-wrap items-center gap-x-4 gap-y-3 py-3">
-      <a
-        href="/"
+      <RouterLink
+        to="/"
         class="micro text-fg-dim transition hover:text-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/40"
       >
         {{ site.brand }}
-      </a>
+      </RouterLink>
 
       <div class="ml-auto flex items-center gap-2">
         <IconLink :href="site.repoUrl" label="PG-Courses on GitHub" title="PG-Courses on GitHub">

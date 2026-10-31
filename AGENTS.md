@@ -4,13 +4,19 @@ Guidance for AI assistants and people editing this repository.
 
 ## What this file is for
 
-This repository publishes courses and lesson notes. Lesson bodies will be Markdown files under
-`src/content/lessons/`. Nothing is written yet: the site is a blank landing page, and the course
-catalogue and the lesson loader come later.
+This repository publishes courses. Each course is a folder under `courses/` with an `intro.md`
+inside it, and the site builds its catalogue from that tree:
+
+```
+courses/<category>/[<subcategory>/]<course>/intro.md
+```
+
+The intro page is the course's first page. Later lesson pages will sit beside it, and the same
+frontmatter and prose rules apply to them.
 
 The rules below exist because generated prose has a recognisable accent. It reads as filler even
-when the facts are correct, and readers of a programming course notice. Every rule applies to
-lesson Markdown, course and lesson summaries, page copy, commit messages, and code comments.
+when the facts are correct, and readers of a programming course notice. Every rule applies to course
+and lesson Markdown, summaries, page copy, commit messages, and code comments.
 
 ## Voice
 
@@ -99,7 +105,7 @@ Delete these:
 - Signposts: "Now let's look at", "Let's dive into", "In this section we will", "Before we begin",
   "Without further ado", "As mentioned earlier".
 
-A lesson ends on the last useful sentence. The next heading is the signpost.
+A page ends on the last useful sentence. The next heading is the signpost.
 
 ### 8. Hype about importance
 
@@ -123,81 +129,80 @@ it feels important ("the Platform", "the System"). Product names keep their own 
 Use sentence case in headings: "Add the second borrow" rather than "Add The Second Borrow". Keep
 bold for UI labels and one-line callouts. Do not bold a phrase in every paragraph.
 
-## Lesson file format
+## Course and lesson files
 
-Each lesson will be one Markdown file at `src/content/lessons/<course-slug>/<lesson-slug>.md`, where
-both slugs match the lesson entries in the catalogue.
+A course lives at `courses/<category>/[<subcategory>/]<course>/`. Its first page is `intro.md`, and
+lesson pages will sit beside it once they exist.
 
-````markdown
----
-title: Borrowing and the borrow checker
-course: rust-foundations
-lesson: borrowing
-minutes: 45
+The folder names are the slugs. A course's URL, its mark and its place in the catalogue all come
+from where the folder sits, so moving a folder moves the course.
+
+Frontmatter is what the loader reads:
+
+```yaml
+title: Python
+level: Beginner
+summary: Write Python that reads well, handles real data, and runs as a command line tool you would keep.
+labels:
+  - Language
+  - Automation
+  - Data
+minutes: 18
 status: draft
-summary: Immutable and mutable references, the aliasing rule, and how to read borrow errors.
----
-
-## What you are building
-
-One short paragraph. State the outcome in the first two sentences.
-
-## Prerequisites
-
-- A link to the earlier lesson this one builds on.
-
-## The idea
-
-Explanation first, code second. Give the reason before the syntax.
-
-## Build it
-
-1. Numbered step.
-2. The next step, ending in code that runs.
-
-```rust
-fn main() {
-    println!("hello");
-}
-```
-````
-
-## Check yourself
-
-Two or three questions, then the command that proves the code works.
-
-## What went wrong first
-
-Optional. Show the dead end and explain why it fails.
-
 ```
 
-Rules for lesson files:
+| Field     | Type                                     | Notes                                                      |
+| --------- | ---------------------------------------- | ---------------------------------------------------------- |
+| `title`   | string                                   | The page heading and the card title.                       |
+| `level`   | `Beginner`, `Intermediate` or `Advanced` | Shown on the card and in the page eyebrow.                 |
+| `summary` | string                                   | One sentence. Used on the card and as the page standfirst. |
+| `labels`  | list of strings                          | Two or three short tags.                                   |
+| `minutes` | positive number                          | Reading time for this page.                                |
+| `status`  | `draft` or `planned`                     | `draft` means written, `planned` means outlined only.      |
 
-- The loader owns the single `#`-level heading. Start body content at `##`.
-- Frontmatter fields must match the lesson type in `src/content/lessons.ts` once that loader lands.
+`slug`, `category`, `subcategory` and `mark` are derived from the folder path, so do not write them
+in the frontmatter. The loader fails the build when a field is missing or the wrong type, which is
+the point: a broken page stops the deploy.
+
+Use the same sections in every intro page, in this order:
+
+1. `## What this course is`
+2. `## Who it is for`
+3. `## What you will build`
+4. `## Prerequisites`
+5. `## How the pages are ordered`
+
+Rules for these files:
+
+- The page heading comes from `title`. Start body content at `##`.
 - Every fenced code block declares a language. Use `text` for program output.
 - Keep code lines under about 90 characters where the language allows it.
 - No trailing whitespace, exactly one trailing newline.
 
 ## Repository conventions
 
+- Each course has a mark at `public/marks/<course-slug>.svg`, drawn from plain shapes in the navy and
+  mint palette, so it stays crisp at icon size and needs no fonts.
+- The catalogue is derived from the folders, not listed a second time. Add a folder with an
+  `intro.md` and the home page picks it up.
 - Vue 3 single-file components with `<script setup lang="ts">`. TypeScript is strict; do not use
   `any`.
 - Styling uses Tailwind utilities plus the design tokens in `src/styles.css`. Add a colour as a CSS
   variable, never as a hex value inside a component.
+- Rendered Markdown is styled by the `.prose` block in `src/styles.css`.
 - Every page sits inside a `.shell` wrapper and opens with a `.page-heading` block.
-- Tests are colocated as `*.spec.ts` next to the module they cover. Run them with `npm test`.
+- Tests are colocated as `*.spec.ts` next to the module they cover. Run them with `npm test`. The
+  catalogue test fails when a mark is missing, so run it after adding a course.
 - Before committing: `npm run typecheck && npm test && npm run build`.
 
-## Checklist before a lesson is published
+## Checklist before a course or lesson is published
 
-1. No em dashes.
+1. No em dashes or en dashes.
 2. No "it is not X, it is Y" shapes.
 3. No emojis.
 4. No marketing vocabulary from the list above.
 5. Headings are sentence case.
 6. Every code block declares a language.
-7. The frontmatter `status` agrees with the course catalogue.
-8. The code was run, not only written.
-```
+7. `labels` holds two or three short tags, and `status` is honest.
+8. A mark exists at `public/marks/<course-slug>.svg`.
+9. The code was run, not only written.
