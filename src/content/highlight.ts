@@ -18,7 +18,6 @@ import sql from 'highlight.js/lib/languages/sql'
 import typescript from 'highlight.js/lib/languages/typescript'
 import xml from 'highlight.js/lib/languages/xml'
 import yaml from 'highlight.js/lib/languages/yaml'
-
 /**
  * Syntax highlighting for lesson code.
  *
@@ -92,6 +91,13 @@ const ALIASES: Record<string, string> = {
   ts: 'typescript',
   yml: 'yaml',
 }
+
+/**
+ * `tsx` and `jsx` are deliberately absent above: the TypeScript and JavaScript
+ * grammars declare those aliases themselves, so a fence for either one is
+ * already coloured. highlight.js has no JSX grammar, so a tag is coloured as
+ * TypeScript sees it rather than as markup.
+ */
 
 for (const [alias, target] of Object.entries(ALIASES)) {
   const language = LANGUAGES[target]

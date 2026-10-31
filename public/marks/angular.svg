@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="angular-mark-title">
+  <title id="angular-mark-title">Angular</title>
+  <!-- The course mark: a shield with an A inside it. -->
+  <defs>
+    <radialGradient id="angular-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#angular-mark-glow)" />
+  <g>
+    <path d="M 512 168 L 796 268 V 556 C 796 716 664 824 512 872 C 360 824 228 716 228 556 V 268 Z" fill="none" stroke="#4fb894" stroke-width="36" stroke-linejoin="round" />
+    <path d="M 512 322 L 372 668 H 434 L 512 474 Z" fill="#8debc4" />
+    <path d="M 512 322 L 652 668 H 590 L 512 474 Z" fill="#8debc4" />
+    <rect x="452" y="566" width="120" height="46" fill="#8debc4" />
+  </g>
+</svg>
