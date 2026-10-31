@@ -71,7 +71,7 @@ print(len({Point(0, 0), Point(0, 0)}))
 `frozen=True` blocks assignment after construction and generates `__hash__`, so instances work as dict
 keys and set members. That combination is what a value object needs.
 
-## __post_init__ for validation and derived values
+## `__post_init__` for validation and derived values
 
 ```python
 from dataclasses import dataclass, field

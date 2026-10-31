@@ -31,17 +31,17 @@ the pattern on every call.
 
 ## The pieces that do most of the work
 
-| Pattern | Matches |
-| --- | --- |
-| `.` | any character except a newline |
-| `\d` `\w` `\s` | a digit, a word character, whitespace |
-| `[abc]` `[^abc]` | one of, or none of, a set |
-| `*` `+` `?` | zero or more, one or more, optional, greedy |
-| `*?` `+?` | the same, preferring the shortest match |
-| `^` `$` | start and end of the string, or of a line with `MULTILINE` |
-| `{2,4}` | between two and four repetitions |
-| `(?P<name>...)` | a capturing group with a name |
-| `(?:...)` | a group that does not capture |
+| Pattern          | Matches                                                    |
+| ---------------- | ---------------------------------------------------------- |
+| `.`              | any character except a newline                             |
+| `\d` `\w` `\s`   | a digit, a word character, whitespace                      |
+| `[abc]` `[^abc]` | one of, or none of, a set                                  |
+| `*` `+` `?`      | zero or more, one or more, optional, greedy                |
+| `*?` `+?`        | the same, preferring the shortest match                    |
+| `^` `$`          | start and end of the string, or of a line with `MULTILINE` |
+| `{2,4}`          | between two and four repetitions                           |
+| `(?P<name>...)`  | a capturing group with a name                              |
+| `(?:...)`        | a group that does not capture                              |
 
 Greedy quantifiers take as much as they can and then give characters back, which is why `.*?` shows up
 inside tag patterns. `\.` matches a literal dot, and a raw string keeps Python from reading the

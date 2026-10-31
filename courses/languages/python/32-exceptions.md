@@ -54,14 +54,14 @@ Nothing reached the log, the caller was told nothing, and the record is gone. Ev
 
 ## Raise the built-in that matches
 
-| Situation | Exception |
-| --- | --- |
-| Wrong type passed in | `TypeError` |
-| Right type, impossible value | `ValueError` |
-| Missing key | `KeyError` |
-| Missing file or directory | `FileNotFoundError` |
-| Attribute does not exist | `AttributeError` |
-| Object is in the wrong state | `RuntimeError` |
+| Situation                            | Exception             |
+| ------------------------------------ | --------------------- |
+| Wrong type passed in                 | `TypeError`           |
+| Right type, impossible value         | `ValueError`          |
+| Missing key                          | `KeyError`            |
+| Missing file or directory            | `FileNotFoundError`   |
+| Attribute does not exist             | `AttributeError`      |
+| Object is in the wrong state         | `RuntimeError`        |
 | Subclass left a method unimplemented | `NotImplementedError` |
 
 Callers catch these names and test suites assert them. A custom exception where `ValueError` would do

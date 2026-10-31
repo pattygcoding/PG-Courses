@@ -25,7 +25,9 @@ does familiar things. You do not need to know decorators, generators or async be
 ## What you will build
 
 A command line tool that reads a file, cleans the data, writes a report, and can run again
-tomorrow. By the end you have working code, a test for it, and a reason for each choice in it.
+tomorrow. By the end you have working code, a test for it, and a reason for each choice in it. The
+last third of the course covers the tooling around that: virtual environments, packing a project,
+formatting, type checks and tests.
 
 ## Prerequisites
 
@@ -33,5 +35,6 @@ Python 3 installed and a terminal. Nothing else.
 
 ## How the pages are ordered
 
-Read the pages in order the first time. Each one ends with something you can run, and later pages
-assume the earlier code exists. After that, use them as reference.
+Read them in order the first time, following the contents list on this page. Each lesson ends with
+something you can run or check, and the later lessons assume the earlier code exists. After that,
+use the contents list as a reference and jump to whatever you need.

@@ -37,12 +37,37 @@ function slugify(text: string): string {
     .replace(/^-+|-+$/g, '')
 }
 
+/** The parts of an inline token this module needs. */
+interface InlineToken {
+  readonly content: string
+  readonly children?: readonly { readonly type: string; readonly content: string }[] | null
+}
+
+/** Plain text of a heading, with the emphasis markers and backticks removed. */
+function headingText(token: InlineToken | undefined): string {
+  if (!token) {
+    return ''
+  }
+
+  const children = token.children ?? []
+  if (children.length === 0) {
+    return token.content
+  }
+
+  return children
+    .filter((child) => child.type === 'text' || child.type === 'code_inline')
+    .map((child) => child.content)
+    .join('')
+}
+
 /**
  * Render a Markdown body and report its `##` and `###` headings.
  *
- * The ids are assigned here rather than left to a plugin so the anchors and the
- * list that points at them are produced from the same pass, and duplicates are
- * numbered instead of silently colliding.
+ * The ids are assigned here rather than left to a plugin, so the anchors and the
+ * list that points at them come from the same pass and duplicates are numbered
+ * instead of silently colliding. Heading text is taken from the parsed children,
+ * so a heading written with `**bold**` or a backticked name reads cleanly in the
+ * contents entry.
  */
 export function renderPage(source: string): RenderedPage {
   const env: Record<string, unknown> = {}
@@ -61,7 +86,7 @@ export function renderPage(source: string): RenderedPage {
       continue
     }
 
-    const text = tokens[index + 1]?.content ?? ''
+    const text = headingText(tokens[index + 1])
     const base = slugify(text) || `section-${headings.length + 1}`
     const seen = used.get(base) ?? 0
     used.set(base, seen + 1)

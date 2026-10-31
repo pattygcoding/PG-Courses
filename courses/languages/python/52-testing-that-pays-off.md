@@ -15,11 +15,11 @@ response it returns.
 
 ## Three levels with different jobs
 
-| Level | Scope | Good at |
-| --- | --- | --- |
-| Unit | one function or class | every branch, fast, exact failures |
-| Integration | several parts, a real file or database | wiring, serialisation, queries |
-| End to end | the whole program through its interface | the path a user actually takes |
+| Level       | Scope                                   | Good at                            |
+| ----------- | --------------------------------------- | ---------------------------------- |
+| Unit        | one function or class                   | every branch, fast, exact failures |
+| Integration | several parts, a real file or database  | wiring, serialisation, queries     |
+| End to end  | the whole program through its interface | the path a user actually takes     |
 
 Most of the suite belongs at the unit level, because those tests run in milliseconds and name the broken
 line. Integration tests catch the mistakes that only appear when parts meet, such as a query that

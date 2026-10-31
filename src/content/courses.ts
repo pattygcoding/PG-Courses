@@ -254,10 +254,14 @@ function readLessonFrontmatter(
 /**
  * Every Markdown file under courses/, keyed by its path.
  *
- * Eager, so the contents list and a lesson are both available on first render
- * with no request per page. The bodies are plain text and the glob is imported
- * by the course and lesson routes, which are lazy, so the catalogue keeps its
- * own chunk.
+ * Eager, so the contents list and a lesson body are both available on first
+ * render, with no request per page and no loading state to handle.
+ *
+ * The trade-off is size: the lesson bodies ride along in this module's chunk,
+ * which the catalogue route also imports. At the current size that is tens of
+ * kilobytes compressed. Once the site holds several hundred lessons, split the
+ * bodies into a lazily loaded glob and generate a metadata manifest, so the
+ * catalogue only ships titles and counts.
  */
 const pageFiles = import.meta.glob('/courses/**/*.md', {
   query: '?raw',

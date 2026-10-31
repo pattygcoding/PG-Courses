@@ -21,6 +21,18 @@ describe('renderPage', () => {
     expect(headings.map((heading) => heading.id)).toEqual(['notes', 'notes-2', 'notes-3'])
   })
 
+  it('reports heading text without emphasis markers or backticks', () => {
+    const { headings } = renderPage(
+      '## A class attribute with **get** controls lookup\n\n## `__name__` and friends',
+    )
+
+    expect(headings.map((heading) => heading.text)).toEqual([
+      'A class attribute with get controls lookup',
+      '__name__ and friends',
+    ])
+    expect(headings[0]?.id).toBe('a-class-attribute-with-get-controls-lookup')
+  })
+
   it('turns punctuation into single hyphens in an anchor', () => {
     const { headings } = renderPage('## try / except / finally')
     expect(headings[0]?.id).toBe('try-except-finally')

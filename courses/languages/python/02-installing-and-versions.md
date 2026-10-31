@@ -14,15 +14,15 @@ so make it on purpose rather than discovering it in production.
 
 The landmarks worth knowing:
 
-| Feature | Version |
-| --- | --- |
-| f-strings | 3.6 |
-| dataclasses | 3.7 |
-| The `:=` assignment expression | 3.8 |
-| `zoneinfo` and the dict merge operator | 3.9 |
-| The `match` statement | 3.10 |
-| `tomllib`, exception groups, `asyncio.TaskGroup` | 3.11 |
-| The `type` statement and `itertools.batched` | 3.12 |
+| Feature                                          | Version |
+| ------------------------------------------------ | ------- |
+| f-strings                                        | 3.6     |
+| dataclasses                                      | 3.7     |
+| The `:=` assignment expression                   | 3.8     |
+| `zoneinfo` and the dict merge operator           | 3.9     |
+| The `match` statement                            | 3.10    |
+| `tomllib`, exception groups, `asyncio.TaskGroup` | 3.11    |
+| The `type` statement and `itertools.batched`     | 3.12    |
 
 ## Check what you have
 

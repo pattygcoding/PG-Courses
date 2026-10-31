@@ -42,14 +42,14 @@ sure.
 
 ## The changes that usually move the number
 
-| Change | Effect |
-| --- | --- |
-| Take work out of the innermost loop | Usually the largest win by far |
-| Use a set or dict for membership instead of a list | Linear to constant |
-| Build text with `join` rather than `+=` | Avoids copying the string each time |
-| Lift an attribute lookup out of a loop | Small but consistent |
-| Move a numeric loop into a vectorised library | Large for array arithmetic |
-| Batch queries instead of one per row | Removes round trips |
+| Change                                             | Effect                              |
+| -------------------------------------------------- | ----------------------------------- |
+| Take work out of the innermost loop                | Usually the largest win by far      |
+| Use a set or dict for membership instead of a list | Linear to constant                  |
+| Build text with `join` rather than `+=`            | Avoids copying the string each time |
+| Lift an attribute lookup out of a loop             | Small but consistent                |
+| Move a numeric loop into a vectorised library      | Large for array arithmetic          |
+| Batch queries instead of one per row               | Removes round trips                 |
 
 The last one is the classic. A loop issuing one query per row is slow because of the round trips, and the
 fix is a single query with an `IN` clause rather than a faster loop.

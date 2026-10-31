@@ -58,11 +58,11 @@ and macOS because the spawned child imports the module again.
 
 ## Choosing
 
-| Work | Tool |
-| --- | --- |
-| Waiting on input and output | threads, or async |
-| CPU bound, inside one process | processes |
-| Thousands of sockets | async |
+| Work                              | Tool                                |
+| --------------------------------- | ----------------------------------- |
+| Waiting on input and output       | threads, or async                   |
+| CPU bound, inside one process     | processes                           |
+| Thousands of sockets              | async                               |
 | A library that is not thread safe | one thread per connection, or async |
 
 ## Shared mutable state

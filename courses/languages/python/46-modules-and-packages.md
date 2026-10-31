@@ -29,7 +29,7 @@ Any `.py` file is a module, and a directory holding an `__init__.py` is a packag
 follows the directories, `from shop.pricing import total` binds the object named `total` from the module
 `shop.pricing`, and `from shop import inventory` binds the module itself.
 
-## Keep __init__ small
+## Keep `__init__` small
 
 `__init__.py` runs once when the package is first imported. A docstring, the public names you want to
 re-export and a version belong there. Connecting to a network or reading the environment does not,

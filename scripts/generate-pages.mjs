@@ -68,10 +68,7 @@ await copyFile(indexFile, join(dist, '404.html'))
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...[
-    { path: '', priority: '1.0', changefreq: 'weekly' },
-    ...pages,
-  ].flatMap((page) => [
+  ...[{ path: '', priority: '1.0', changefreq: 'weekly' }, ...pages].flatMap((page) => [
     '  <url>',
     `    <loc>${origin}/${page.path}</loc>`,
     `    <changefreq>${page.changefreq}</changefreq>`,

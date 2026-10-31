@@ -132,7 +132,16 @@ bold for UI labels and one-line callouts. Do not bold a phrase in every paragrap
 ## Course and lesson files
 
 A course lives at `courses/<category>/[<subcategory>/]<course>/`. Its first page is `intro.md`, and
-lesson pages will sit beside it once they exist.
+its lessons sit beside it, numbered:
+
+```text
+courses/languages/python/intro.md
+courses/languages/python/01-how-python-runs.md
+courses/languages/python/02-installing-and-versions.md
+```
+
+The number sets the reading order and the rest of the filename is the slug, so renaming a file to
+reorder it never changes its URL. A file that does not match `<number>-<slug>.md` stops the build.
 
 The folder names are the slugs. A course's URL, its mark and its place in the catalogue all come
 from where the folder sits, so moving a folder moves the course.
@@ -172,11 +181,40 @@ Use the same sections in every intro page, in this order:
 4. `## Prerequisites`
 5. `## How the pages are ordered`
 
-Rules for these files:
+## Lesson files
+
+Lessons use a smaller set of fields:
+
+```yaml
+title: Names, objects and binding
+summary: A name is attached to an object, and assignment never copies.
+chapter: Language basics
+minutes: 12
+status: draft
+```
+
+| Field     | Type                 | Notes                                                     |
+| --------- | -------------------- | --------------------------------------------------------- |
+| `title`   | string               | The lesson heading and its entry in the contents list.    |
+| `summary` | string               | One sentence, shown under the title in the contents list. |
+| `chapter` | string               | The section of the contents list this lesson belongs to.  |
+| `minutes` | positive number      | Reading time for this lesson.                             |
+| `status`  | `draft` or `planned` |                                                           |
+
+Chapters appear in the contents list in the order their first lesson appears, so a chapter needs no
+registration anywhere. Keep the chapter names consistent inside a course, with a capital on the
+first word only.
+
+A lesson ends with `## Check yourself`, which names something to run or work out. It is not a summary
+of what the reader has just read.
+
+Rules for course and lesson files:
 
 - The page heading comes from `title`. Start body content at `##`.
-- Every fenced code block declares a language. Use `text` for program output.
+- Every fenced code block declares a language. Use `text` for program output and `pycon` for a
+  session transcript.
 - Keep code lines under about 90 characters where the language allows it.
+- Show the output of a snippet when the output is the point, and only when you have run it.
 - No trailing whitespace, exactly one trailing newline.
 
 ## Repository conventions
@@ -185,6 +223,8 @@ Rules for these files:
   mint palette, so it stays crisp at icon size and needs no fonts.
 - The catalogue is derived from the folders, not listed a second time. Add a folder with an
   `intro.md` and the home page picks it up.
+- Lessons work the same way. Add a numbered Markdown file and the contents list, the lesson route and
+  the sitemap pick it up. Nothing is registered by hand.
 - Display order for categories and subcategories lives in `CATEGORY_ORDER` and `SUBCATEGORY_ORDER`
   in `src/content/courses.ts`. Adding a folder needs no edit there unless it has to sit in a
   specific place.
@@ -208,4 +248,5 @@ Rules for these files:
 6. Every code block declares a language.
 7. `labels` holds two or three short tags, and `status` is honest.
 8. A mark exists at `public/marks/<course-slug>.svg`.
-9. The code was run, not only written.
+9. Lesson files are named `<number>-<slug>.md` and every lesson carries a `chapter`.
+10. The code was run, not only written.
