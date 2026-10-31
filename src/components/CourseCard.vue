@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { Course } from '../content/courses'
 
-defineProps<{
+const props = defineProps<{
   course: Course
 }>()
+
+const lessons = computed(() => `${props.course.lessons.length} lessons`)
+
+/** Reading time across the lessons, rounded to the nearest half hour. */
+const hours = computed(() => Math.round(props.course.lessonMinutes / 30) / 2)
 </script>
 
 <template>
@@ -35,6 +41,11 @@ defineProps<{
 
     <span class="mt-auto flex flex-wrap gap-2 pt-1">
       <span v-for="label in course.labels" :key="label" class="tag text-fg-dim">{{ label }}</span>
+    </span>
+
+    <span class="flex items-center justify-between gap-3 border-t border-line/10 pt-3">
+      <span class="micro text-fg-dim">{{ lessons }}</span>
+      <span class="micro text-fg-dim">about {{ hours }}h</span>
     </span>
   </RouterLink>
 </template>

@@ -17,11 +17,18 @@ const routes: readonly RouteRecordRaw[] = [
     meta: { title: site.name },
   },
   {
-    path: '/courses/:slug',
+    path: '/courses/:course',
     name: 'course',
     component: () => import('./pages/CourseView.vue'),
     props: true,
     meta: { title: `Course - ${site.name}` },
+  },
+  {
+    path: '/courses/:course/:lesson',
+    name: 'lesson',
+    component: () => import('./pages/LessonView.vue'),
+    props: true,
+    meta: { title: `Lesson - ${site.name}` },
   },
   {
     // Catch-all last: GitHub Pages serves 404.html (a copy of index.html), the

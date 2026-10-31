@@ -5,15 +5,21 @@ describe('router', () => {
   it.each([
     ['/', 'home'],
     ['/courses/python', 'course'],
-    ['/courses/vue', 'course'],
     ['/courses/vue/', 'course'],
+    ['/courses/python/iterators-and-generators', 'lesson'],
+    ['/courses/python/iterators-and-generators/', 'lesson'],
     ['/some/unknown/path', 'not-found'],
   ])('resolves %s to the %s route', (path, name) => {
     expect(router.resolve(path).name).toBe(name)
   })
 
-  it('passes the slug through to the course page as a prop', () => {
-    expect(router.resolve('/courses/rust-foundations').params.slug).toBe('rust-foundations')
+  it('passes the course slug through as a prop', () => {
+    expect(router.resolve('/courses/python').params).toMatchObject({ course: 'python' })
+  })
+
+  it('passes both slugs through to a lesson page', () => {
+    const resolved = router.resolve('/courses/python/dictionaries')
+    expect(resolved.params).toMatchObject({ course: 'python', lesson: 'dictionaries' })
   })
 
   it('names every route', () => {

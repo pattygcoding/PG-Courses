@@ -1,11 +1,26 @@
-import { existsSync, readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { join, resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { catalogue, courses, findCourse } from './courses'
+import { catalogue, courses, findCourse, findLesson } from './courses'
 
 /** Resolve a public path such as "/marks/python.svg" against the project root. */
 function publicFile(publicPath: string): string {
   return resolve(process.cwd(), 'public', publicPath.replace(/^\//, ''))
+}
+
+/** The folder a course lives in, rebuilt from its slugs. */
+function courseFolder(course: {
+  categorySlug: string
+  subcategorySlug: string | null
+  slug: string
+}): string {
+  return join(
+    process.cwd(),
+    'courses',
+    course.categorySlug,
+    ...(course.subcategorySlug ? [course.subcategorySlug] : []),
+    course.slug,
+  )
 }
 
 describe('course catalogue', () => {
@@ -69,5 +84,85 @@ describe('course catalogue', () => {
 
   it('returns undefined for an unknown slug', () => {
     expect(findCourse('does-not-exist')).toBeUndefined()
+  })
+})
+
+describe('lessons', () => {
+  const withLessons = courses.filter((course) => course.lessons.length > 0)
+
+  it('has at least one course with lessons', () => {
+    expect(withLessons.length).toBeGreaterThan(0)
+  })
+
+  it('orders lessons by their filename number', () => {
+    for (const course of withLessons) {
+      const orders = course.lessons.map((lesson) => lesson.order)
+      expect(orders, `${course.slug} order`).toEqual([...orders].sort((a, b) => a - b))
+      expect(new Set(orders).size, `${course.slug} duplicate numbers`).toBe(orders.length)
+    }
+  })
+
+  it('gives every lesson a unique slug and a route path built from it', () => {
+    for (const course of withLessons) {
+      const slugs = course.lessons.map((lesson) => lesson.slug)
+      expect(new Set(slugs).size, `${course.slug} duplicate lesson slugs`).toBe(slugs.length)
+
+      for (const lesson of course.lessons) {
+        expect(lesson.path).toBe(`/courses/${course.slug}/${lesson.slug}/`)
+      }
+    }
+  })
+
+  it('reads the frontmatter and the body of every lesson', () => {
+    for (const course of withLessons) {
+      for (const lesson of course.lessons) {
+        const where = `${course.slug}/${lesson.slug}`
+        expect(lesson.title.length, `${where} title`).toBeGreaterThan(0)
+        expect(lesson.summary.length, `${where} summary`).toBeGreaterThan(0)
+        expect(lesson.chapter.length, `${where} chapter`).toBeGreaterThan(0)
+        expect(lesson.minutes, `${where} minutes`).toBeGreaterThan(0)
+        expect(lesson.body.length, `${where} body`).toBeGreaterThan(200)
+        expect(lesson.body.startsWith('---'), `${where} keeps no frontmatter`).toBe(false)
+      }
+    }
+  })
+
+  it('groups lessons into chapters in the order the chapters first appear', () => {
+    for (const course of withLessons) {
+      const flattened = course.chapters.flatMap((chapter) => chapter.lessons)
+      expect(flattened, `${course.slug} chapters`).toEqual([...course.lessons])
+
+      const first = course.lessons[0]
+      expect(course.chapters[0]?.name, `${course.slug} first chapter`).toBe(first?.chapter)
+    }
+  })
+
+  it('sums the lesson reading time', () => {
+    for (const course of withLessons) {
+      const expected = course.lessons.reduce((total, lesson) => total + lesson.minutes, 0)
+      expect(course.lessonMinutes, `${course.slug} lessonMinutes`).toBe(expected)
+    }
+  })
+
+  it('loads every Markdown file that sits in a course folder', () => {
+    for (const course of courses) {
+      const folder = courseFolder(course)
+      const files = readdirSync(folder).filter((name) => name.endsWith('.md'))
+
+      expect(files, `${course.slug} intro`).toContain('intro.md')
+      expect(files.length, `${course.slug} files on disk`).toBe(course.lessons.length + 1)
+    }
+  })
+
+  it('finds a lesson inside a course', () => {
+    const course = withLessons[0]
+    const lesson = course?.lessons[0]
+    expect(lesson).toBeDefined()
+    expect(findLesson(course!.slug, lesson!.slug)).toBe(lesson)
+  })
+
+  it('returns undefined for an unknown lesson or course', () => {
+    expect(findLesson('python', 'does-not-exist')).toBeUndefined()
+    expect(findLesson('does-not-exist', 'anything')).toBeUndefined()
   })
 })

@@ -1,32 +1,44 @@
 import { describe, expect, it } from 'vitest'
-import { renderMarkdown } from './markdown'
+import { renderPage } from './markdown'
 
-describe('renderMarkdown', () => {
+describe('renderPage', () => {
   it('renders the headings and paragraphs a lesson uses', () => {
-    const html = renderMarkdown('## The idea\n\nSome text.')
-    expect(html).toContain('<h2>The idea</h2>')
+    const { html } = renderPage('## The idea\n\nSome text.')
+    expect(html).toContain('<h2 id="the-idea">The idea</h2>')
     expect(html).toContain('<p>Some text.</p>')
   })
 
-  it('renders lists', () => {
-    const html = renderMarkdown('- one\n- two')
-    expect(html).toContain('<ul>')
-    expect(html).toContain('<li>one</li>')
+  it('reports the headings a reader can jump to, and skips deeper ones', () => {
+    const { headings } = renderPage('## One\n\n### Two\n\n#### Too deep')
+    expect(headings).toEqual([
+      { level: 2, id: 'one', text: 'One' },
+      { level: 3, id: 'two', text: 'Two' },
+    ])
   })
 
-  it('renders fenced code with its language class', () => {
-    const html = renderMarkdown('```rust\nfn main() {}\n```')
+  it('numbers repeated headings instead of colliding', () => {
+    const { headings } = renderPage('## Notes\n\n## Notes\n\n## Notes')
+    expect(headings.map((heading) => heading.id)).toEqual(['notes', 'notes-2', 'notes-3'])
+  })
+
+  it('turns punctuation into single hyphens in an anchor', () => {
+    const { headings } = renderPage('## try / except / finally')
+    expect(headings[0]?.id).toBe('try-except-finally')
+  })
+
+  it('renders lists and fenced code with its language', () => {
+    const { html } = renderPage('- one\n\n```rust\nfn main() {}\n```')
+    expect(html).toContain('<li>one</li>')
     expect(html).toContain('language-rust')
-    expect(html).toContain('<pre>')
   })
 
   it('escapes raw HTML instead of injecting it', () => {
-    const html = renderMarkdown('<script>alert(1)</script>')
+    const { html } = renderPage('<script>alert(1)</script>')
     expect(html).not.toContain('<script>')
     expect(html).toContain('&lt;script&gt;')
   })
 
   it('leaves dashes alone, since the house style avoids them', () => {
-    expect(renderMarkdown('a -- b')).toContain('a -- b')
+    expect(renderPage('a -- b').html).toContain('a -- b')
   })
 })
