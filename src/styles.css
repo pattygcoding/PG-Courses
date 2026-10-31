@@ -222,6 +222,27 @@ html[data-theme='light'] .theme-icon-sun {
   .prose pre code {
     @apply bg-transparent p-0 text-fg-soft;
   }
+
+  /* JetBrains Mono draws programming ligatures, so `>=` renders as a single
+     glyph that looks like a greater-than with a line under it, and `->` renders
+     as an arrow. The text underneath is unchanged, which is what makes this
+     worth a rule rather than a taste: in a course the exact characters are the
+     material, and a reader cannot tell a `>` beside an `=` from the `>=` the file
+     really contains. Ligatures are off wherever code is shown.
+     `font-variant-ligatures` is the standard property and the feature list covers
+     an engine that reads only the older one; `rlig` is left alone, since that one
+     is required for correct shaping in some scripts. */
+  code,
+  kbd,
+  samp,
+  pre {
+    font-variant-ligatures: none;
+    font-feature-settings:
+      'calt' 0,
+      'liga' 0,
+      'clig' 0,
+      'dlig' 0;
+  }
   .prose blockquote {
     @apply mb-4 border-l-2 border-accent/40 pl-4 text-fg-muted;
   }
