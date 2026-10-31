@@ -62,7 +62,7 @@ they are worth an afternoon each.
 - **React** and **Vue** take the language into the browser with a component model, and both assume the closures,
   modules and async in this course.
 - **Express** takes Node into an HTTP service, which is where the streams, the events and the process lifetime matter.
-- **TypeScript** is not a course here and it is the natural next step for a codebase past a few thousand lines, because
+- **TypeScript** has its own course, and it is the natural next step for a codebase past a few thousand lines, because
   the type checker catches exactly the class of mistake this course spent its time warning about.
 
 ## Practice that stretches
