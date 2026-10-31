@@ -10,6 +10,7 @@ import ini from 'highlight.js/lib/languages/ini'
 import java from 'highlight.js/lib/languages/java'
 import javascript from 'highlight.js/lib/languages/javascript'
 import json from 'highlight.js/lib/languages/json'
+import makefile from 'highlight.js/lib/languages/makefile'
 import plaintext from 'highlight.js/lib/languages/plaintext'
 import python from 'highlight.js/lib/languages/python'
 import rust from 'highlight.js/lib/languages/rust'
@@ -37,6 +38,7 @@ const LANGUAGES: Record<string, LanguageFn> = {
   java,
   javascript,
   json,
+  makefile,
   plaintext,
   python,
   rust,
