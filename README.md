@@ -3,19 +3,17 @@
 The course and lesson site for [pattygcoding.com](https://pattygcoding.com), published at
 [courses.pattygcoding.com](https://courses.pattygcoding.com).
 
-Short, project-driven courses on Rust, TypeScript, WebAssembly and the web. The site shares its
-design language with [Arcade-PG-Website](https://github.com/pattygcoding/Arcade-PG-Website): a navy
-canvas, a mint accent, Inter for text and JetBrains Mono for technical labels, with a light and
-dark theme that flips on one attribute.
+Right now this is a blank landing page with the design in place: a navy canvas, a mint accent,
+Inter for text and JetBrains Mono for technical labels, a light and dark theme, and the header and
+footer shell. Course content comes later.
 
 ## Stack
 
 - Vue 3 with `<script setup lang="ts">`
 - TypeScript in strict mode
 - Vite for the dev server and the production build
-- Vue Router for client-side routing
-- Tailwind CSS v3 with the shared design tokens in `src/styles.css`
-- Vitest for unit tests
+- Tailwind CSS v3 with the design tokens in `src/styles.css`
+- Vitest and Vue Test Utils for unit tests
 
 ## Commands
 
@@ -34,51 +32,35 @@ dark theme that flips on one attribute.
 
 ```
 src/
-  components/        Shared UI: header, footer, theme toggle, course card
+  components/        Header, footer, theme toggle and the icon-link button
   composables/       useTheme, the light and dark theme store
-  content/courses.ts The course catalogue the site renders from
-  pages/             One component per route
-  App.vue            Shell: header, routed view, footer
-  router.ts          Route table and document titles
-  site.ts            Site-wide constants and primary navigation
+  App.vue            Shell: header, the page body, footer
+  main.ts            Mounts the app
+  site.ts            Site-wide constants
   styles.css         Design tokens and shared component classes
 public/              CNAME, robots.txt, sitemap.xml, favicon, og image
 scripts/copy-404.mjs Copies index.html to 404.html after the build
 ```
 
-## Routes
-
-| Path             | Page                                                    |
-| ---------------- | ------------------------------------------------------- |
-| `/`              | Home, with the hero, headline figures and the catalogue |
-| `/courses`       | Every course, grouped by track                          |
-| `/courses/:slug` | A course page with its lesson outline                   |
-| `/about`         | What the courses are and how they are written           |
-| anything else    | A 404 page that links back to the catalogue             |
+The page body is the empty `<main>` in `src/App.vue`. That is where content goes.
 
 ## Deployment
 
 `.github/workflows/deploy.yml` runs on every push to `main`. It installs dependencies, type checks,
 runs the tests, builds, and publishes `dist/` to GitHub Pages.
 
-Two files make the static host behave like an app:
+Two files support the static host:
 
-- `public/CNAME` sets the custom domain to `courses.pattygcoding.com`. Create a `CNAME` DNS record
-  pointing that host at `pattygcoding.github.io`, and set the custom domain in the repository's
+- `public/CNAME` sets the custom domain to `courses.pattygcoding.com`. Point a `CNAME` DNS record
+  for that host at `pattygcoding.github.io`, and keep the custom domain set in the repository's
   Pages settings.
-- `scripts/copy-404.mjs` copies `index.html` to `404.html` after the build. GitHub Pages serves
-  `404.html` for any path it cannot resolve on disk, so a hard refresh on `/courses/rust-foundations`
-  boots the app and the router renders the right page.
+- `scripts/copy-404.mjs` copies `index.html` to `404.html` after the build, so an unknown path still
+  serves the app instead of the host's default error page.
 
-## Adding a course or lesson
+## Writing rules
 
-Courses and their lesson outlines live in `src/content/courses.ts`. Add a new entry to the
-`courses` array and the catalogue, the home page and the routes pick it up.
-
-Lesson bodies will be Markdown under `src/content/lessons/<course-slug>/<lesson-slug>.md`, using the
-slugs already defined in the catalogue. **Before writing any lesson content, read
-[AGENTS.md](./AGENTS.md)**. It lists the writing rules for this repository, including the patterns
-to avoid.
+**Before writing any lesson or page copy, read [AGENTS.md](./AGENTS.md)**. It lists the patterns to
+avoid in this repository, including em dashes, the "it is not X, it is Y" construction, and emojis.
 
 ## Licence
 

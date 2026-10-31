@@ -4,12 +4,13 @@ Guidance for AI assistants and people editing this repository.
 
 ## What this file is for
 
-This repository publishes courses and lesson notes. Lesson bodies are Markdown files that live
-under `src/content/lessons/`, and the course catalogue lives in `src/content/courses.ts`.
+This repository publishes courses and lesson notes. Lesson bodies will be Markdown files under
+`src/content/lessons/`. Nothing is written yet: the site is a blank landing page, and the course
+catalogue and the lesson loader come later.
 
 The rules below exist because generated prose has a recognisable accent. It reads as filler even
 when the facts are correct, and readers of a programming course notice. Every rule applies to
-lesson Markdown, course summaries in `courses.ts`, page copy, commit messages, and code comments.
+lesson Markdown, course and lesson summaries, page copy, commit messages, and code comments.
 
 ## Voice
 
@@ -124,8 +125,8 @@ bold for UI labels and one-line callouts. Do not bold a phrase in every paragrap
 
 ## Lesson file format
 
-Each lesson is one Markdown file at `src/content/lessons/<course-slug>/<lesson-slug>.md`, where both
-slugs match the entries in `src/content/courses.ts`.
+Each lesson will be one Markdown file at `src/content/lessons/<course-slug>/<lesson-slug>.md`, where
+both slugs match the lesson entries in the catalogue.
 
 ````markdown
 ---
