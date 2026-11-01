@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="github-copilot-mark-title">
+  <title id="github-copilot-mark-title">GitHub Copilot</title>
+  <!-- The course mark: a robot head with an antenna, drawn from plain shapes. -->
+  <defs>
+    <radialGradient id="github-copilot-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#E6EBF0" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#E6EBF0" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#github-copilot-mark-glow)" />
+  <g>
+    <path d="M 512 336 V 240" stroke="#AEB7C2" stroke-width="48" stroke-linecap="round" />
+    <circle cx="512" cy="204" r="44" fill="#AEB7C2" />
+    <rect x="288" y="336" width="448" height="352" rx="84" fill="none" stroke="#E6EBF0" stroke-width="56" />
+    <rect x="392" y="452" width="84" height="104" rx="28" fill="#E6EBF0" />
+    <rect x="548" y="452" width="84" height="104" rx="28" fill="#E6EBF0" />
+    <rect x="436" y="596" width="152" height="36" rx="18" fill="#AEB7C2" />
+  </g>
+</svg>

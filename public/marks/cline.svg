@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="cline-mark-title">
+  <title id="cline-mark-title">Cline</title>
+  <!-- The course mark: a terminal window with a prompt, drawn from plain shapes. -->
+  <defs>
+    <radialGradient id="cline-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#38BDF8" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#cline-mark-glow)" />
+  <g>
+    <rect x="208" y="268" width="608" height="488" rx="64" fill="none" stroke="#38BDF8" stroke-width="56" />
+    <circle cx="300" cy="344" r="20" fill="#7DD3FC" />
+    <circle cx="368" cy="344" r="20" fill="#7DD3FC" />
+    <circle cx="436" cy="344" r="20" fill="#7DD3FC" />
+    <path d="M 340 500 L 420 560 L 340 620" fill="none" stroke="#38BDF8" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="480" y="600" width="144" height="40" rx="20" fill="#7DD3FC" />
+  </g>
+</svg>

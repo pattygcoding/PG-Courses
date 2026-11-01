@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="prompt-engineering-mark-title">
+  <title id="prompt-engineering-mark-title">Prompt engineering</title>
+  <!-- The course mark: a speech bubble holding a caret and two lines. -->
+  <defs>
+    <radialGradient id="prompt-engineering-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#EAB308" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#EAB308" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#prompt-engineering-mark-glow)" />
+  <g>
+    <path d="M 392 636 V 764 L 512 636 Z" fill="#EAB308" />
+    <rect x="208" y="252" width="608" height="396" rx="88" fill="none" stroke="#EAB308" stroke-width="56" />
+    <path d="M 356 372 V 512" stroke="#EAB308" stroke-width="52" stroke-linecap="round" />
+    <rect x="432" y="376" width="292" height="40" rx="20" fill="#FDE047" />
+    <rect x="432" y="468" width="212" height="40" rx="20" fill="#FDE047" />
+  </g>
+</svg>

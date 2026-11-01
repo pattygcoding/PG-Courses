@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="ai-security-mark-title">
+  <title id="ai-security-mark-title">AI security</title>
+  <!-- The course mark: a shield holding a padlock. -->
+  <defs>
+    <radialGradient id="ai-security-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#EF4444" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#EF4444" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#ai-security-mark-glow)" />
+  <g>
+    <path d="M 512 168 L 796 268 V 548 C 796 712 664 824 512 872 C 360 824 228 712 228 548 V 268 Z" fill="none" stroke="#EF4444" stroke-width="52" stroke-linejoin="round" />
+    <path d="M 448 512 V 452 A 64 64 0 0 1 576 452 V 512" fill="none" stroke="#FCA5A5" stroke-width="44" stroke-linecap="round" />
+    <rect x="404" y="512" width="216" height="168" rx="36" fill="#EF4444" />
+    <circle cx="512" cy="580" r="26" fill="#06090e" />
+    <rect x="500" y="590" width="24" height="54" rx="12" fill="#06090e" />
+  </g>
+</svg>

@@ -115,6 +115,7 @@ const STATUSES: readonly LessonStatus[] = ['draft', 'planned']
 const CATEGORY_NAMES: Record<string, string> = {
   languages: 'Languages',
   frameworks: 'Frameworks',
+  ai: 'AI',
 }
 
 /** Human names for the middle folders. */
@@ -129,7 +130,7 @@ const SUBCATEGORY_NAMES: Record<string, string> = {
  * keeps alphabetical order, after the listed names, so adding a folder needs no
  * change here unless it has to sit in a particular place.
  */
-const CATEGORY_ORDER: readonly string[] = ['languages', 'frameworks']
+const CATEGORY_ORDER: readonly string[] = ['languages', 'frameworks', 'ai']
 const SUBCATEGORY_ORDER: readonly string[] = ['frontend', 'backend', 'fullstack']
 
 /** Lesson filenames: a number for ordering, then the slug. */

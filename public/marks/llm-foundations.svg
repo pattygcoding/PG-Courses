@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="llm-foundations-mark-title">
+  <title id="llm-foundations-mark-title">How language models work</title>
+  <!-- The course mark: two layers of nodes joined by every connection. -->
+  <defs>
+    <radialGradient id="llm-foundations-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#A855F7" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#llm-foundations-mark-glow)" />
+  <g>
+    <g stroke="#6D28D9" stroke-width="22" fill="none">
+      <path d="M 324 352 L 700 352" />
+      <path d="M 324 352 L 700 512" />
+      <path d="M 324 352 L 700 672" />
+      <path d="M 324 512 L 700 352" />
+      <path d="M 324 512 L 700 512" />
+      <path d="M 324 512 L 700 672" />
+      <path d="M 324 672 L 700 352" />
+      <path d="M 324 672 L 700 512" />
+      <path d="M 324 672 L 700 672" />
+    </g>
+    <circle cx="324" cy="352" r="56" fill="#A855F7" />
+    <circle cx="324" cy="512" r="56" fill="#A855F7" />
+    <circle cx="324" cy="672" r="56" fill="#A855F7" />
+    <circle cx="700" cy="352" r="56" fill="#A855F7" />
+    <circle cx="700" cy="512" r="56" fill="#A855F7" />
+    <circle cx="700" cy="672" r="56" fill="#A855F7" />
+  </g>
+</svg>

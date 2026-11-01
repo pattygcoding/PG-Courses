@@ -138,6 +138,9 @@ letting a course sprawl:
   language. It sits at `courses/languages/<language>/`.
 - A framework or platform course covers the runtime, the framework, the hosting model and how the
   result is deployed. It sits at `courses/frameworks/<frontend|backend>/<framework>/`.
+- An AI course covers one thing an engineer does with a model: a tool, a technique or a risk. It sits
+  at `courses/ai/<subject>/`. Tool courses work on the same library application as the service
+  courses, so a change read in one can be checked in the other.
 
 C# and .NET are split that way on purpose. The C# course owns the type system, records, generics, LINQ
 and `async` as syntax. The .NET course owns ASP.NET Core, the host, the service container,
@@ -274,7 +277,8 @@ paste it into a terminal.
   the sitemap pick it up. Nothing is registered by hand.
 - Display order for categories and subcategories lives in `CATEGORY_ORDER` and `SUBCATEGORY_ORDER`
   in `src/content/courses.ts`. Adding a folder needs no edit there unless it has to sit in a
-  specific place.
+  specific place. Their display names come from `CATEGORY_NAMES` and `SUBCATEGORY_NAMES` in the same
+  file, which is where the `ai` folder is spelled `AI`.
 - Vue 3 single-file components with `<script setup lang="ts">`. TypeScript is strict; do not use
   `any`.
 - Styling uses Tailwind utilities plus the design tokens in `src/styles.css`. Add a colour as a CSS

@@ -39,6 +39,7 @@ courses/                The courses themselves, one folder per course
   languages/python/intro.md
   languages/python/01-how-python-runs.md
   frameworks/frontend/vue/intro.md
+  ai/prompt-engineering/intro.md
 public/marks/           One SVG mark per course, named after the course slug
 public/                 CNAME, robots.txt, favicon, og image
 scripts/generate-pages.mjs Writes a page per route and generates the sitemap
@@ -73,10 +74,10 @@ category and subcategory comes first, so a folder can be named for its slug with
 deciding where it appears. Anything not listed keeps alphabetical order after the listed names, so
 adding a folder needs no change there unless it has to sit in a particular place.
 
-Course scope is deliberate. A language course covers the language and its standard library, and a
-framework course covers the runtime, the framework and hosting. C# and .NET are two courses for that
-reason, and Java and Spring Boot are another pair. The same split applies whenever a language ships a
-platform of its own.
+Course scope is deliberate. A language course covers the language and its standard library, a
+framework course covers the runtime, the framework and hosting, and an AI course covers one thing an
+engineer does with a model. C# and .NET are two courses for that reason, and Java and Spring Boot are
+another pair. The same split applies whenever a language ships a platform of its own.
 
 ## How lessons work
 

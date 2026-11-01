@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="embeddings-and-retrieval-mark-title">
+  <title id="embeddings-and-retrieval-mark-title">Embeddings and retrieval</title>
+  <!-- The course mark: points in a vector space, one of them retrieved. -->
+  <defs>
+    <radialGradient id="embeddings-and-retrieval-mark-glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0" stop-color="#14B8A6" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#14B8A6" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="180" fill="#06090e" />
+  <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
+  <rect width="1024" height="1024" rx="180" fill="url(#embeddings-and-retrieval-mark-glow)" />
+  <g>
+    <rect x="208" y="208" width="608" height="608" rx="72" fill="none" stroke="#14B8A6" stroke-width="44" />
+    <circle cx="368" cy="360" r="38" fill="#14B8A6" />
+    <circle cx="464" cy="340" r="38" fill="#14B8A6" />
+    <circle cx="380" cy="460" r="38" fill="#14B8A6" />
+    <circle cx="652" cy="620" r="80" fill="none" stroke="#5EEAD4" stroke-width="26" />
+    <circle cx="652" cy="620" r="34" fill="#5EEAD4" />
+    <circle cx="768" cy="552" r="34" fill="#5EEAD4" />
+    <circle cx="692" cy="740" r="34" fill="#5EEAD4" />
+  </g>
+</svg>
