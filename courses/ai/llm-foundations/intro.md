@@ -7,7 +7,7 @@ labels:
   - Foundations
   - Models
 minutes: 22
-status: planned
+status: draft
 ---
 
 ## What this course is

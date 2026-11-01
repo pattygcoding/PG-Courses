@@ -7,7 +7,7 @@ labels:
   - Prompting
   - Practice
 minutes: 20
-status: planned
+status: draft
 ---
 
 ## What this course is
