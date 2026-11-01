@@ -3,8 +3,8 @@
   <!-- The course mark: the platform hexagon, with a node and a chevron inside. -->
   <defs>
     <radialGradient id="dotnet-mark-glow" cx="50%" cy="38%" r="60%">
-      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
-      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+      <stop offset="0" stop-color="#512BD4" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#512BD4" stop-opacity="0" />
     </radialGradient>
   </defs>
   <rect width="1024" height="1024" rx="180" fill="#06090e" />
@@ -14,15 +14,15 @@
     <path
       d="M 512 176 L 800 342 V 682 L 512 848 L 224 682 V 342 Z"
       fill="none"
-      stroke="#8debc4"
+      stroke="#512BD4"
       stroke-width="56"
       stroke-linejoin="round"
     />
-    <circle cx="428" cy="512" r="54" fill="#6fd9af" />
+    <circle cx="428" cy="512" r="54" fill="#8B6FEA" />
     <path
       d="M 556 428 L 656 512 L 556 596"
       fill="none"
-      stroke="#4fb894"
+      stroke="#8B6FEA"
       stroke-width="56"
       stroke-linecap="round"
       stroke-linejoin="round"

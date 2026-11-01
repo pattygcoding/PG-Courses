@@ -263,8 +263,11 @@ paste it into a terminal.
 
 ## Repository conventions
 
-- Each course has a mark at `public/marks/<course-slug>.svg`, drawn from plain shapes in the navy and
-  mint palette, so it stays crisp at icon size and needs no fonts.
+- Each course has a mark at `public/marks/<course-slug>.svg`, drawn from plain shapes on the navy card,
+  with the glyph in the course's own brand colour, so it stays crisp at icon size and needs no fonts.
+  The same hex is listed in `BRANDS` in `src/content/theme.ts`. A course page tints its accent, its
+  links and its code tokens to that brand colour, and the accents are derived to clear WCAG AA on both
+  the navy and the light background. `theme.spec.ts` fails when the two disagree.
 - The catalogue is derived from the folders, not listed a second time. Add a folder with an
   `intro.md` and the home page picks it up.
 - Lessons work the same way. Add a numbered Markdown file and the contents list, the lesson route and
@@ -299,6 +302,7 @@ words, trailing whitespace and the closing section. The rest is a read-through.
 6. Every fenced block declares a language, and that language is registered in
    `src/content/highlight.ts`.
 7. `labels` holds two or three short tags, and `status` is honest.
-8. A mark exists at `public/marks/<course-slug>.svg`.
+8. A mark exists at `public/marks/<course-slug>.svg`, and its brand colour is listed in `BRANDS` in
+   `src/content/theme.ts`.
 9. Lesson files are named `<number>-<slug>.md` and every lesson carries a `chapter`.
 10. The code was run, not only written.

@@ -58,9 +58,23 @@ The first chapter is what the framework is: the three layers it stands on, a pro
 dependencies, a first endpoint, the idea the rest depends on (the type hints are the API), and the documentation the framework
 writes from them.
 
-The second chapter is requests and responses: a pydantic model per shape with the model that hides fields, the status codes
-and the model that decides what a client receives, and dependency injection, which is how a connection, an account and a rule
-become parameters of a route.
+The second is requests and responses: a pydantic model per shape, the status codes and the model that decides what a client
+receives, dependency injection, and the choice between `async def` and `def` that decides whether a route blocks.
+
+The third chapter is data: a repository layer, SQLite from the standard library with its pragmas, the queries behind filtering
+and paging, the transaction that makes the last-copy check safe, and the lifespan where the schema belongs.
+
+The fourth is errors: your own classes, one response shape for all of them, what pydantic's `422` carries, and the handlers for
+the failures you did not raise.
+
+The fifth is what makes an API usable by other people: tokens with PyJWT, password hashing with scrypt, the difference between
+authentication and authorisation, rate limiting, CORS, and what happens to caching and compression.
+
+The sixth is quality: the test setup, tests for endpoints and for the layers under them, ruff and mypy in strict mode, the
+structured logs a request writes, and what blocks the event loop.
+
+The last chapter ships it: the ASGI model, uvicorn in production, graceful shutdown, the container, what changes behind a
+reverse proxy, and where FastAPI stops being the right tool.
 
 Read them in order the first time, following the contents list on this page. Each lesson ends with something to run, and the
 application grows as you go.

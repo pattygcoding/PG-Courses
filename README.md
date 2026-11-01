@@ -45,6 +45,7 @@ scripts/generate-pages.mjs Writes a page per route and generates the sitemap
 src/components/         Header, footer, theme toggle, icon link, course card, MarkdownBody
 src/composables/        useTheme, useCodeCopy
 src/content/courses.ts  Reads the courses/ tree into the catalogue and contents lists
+src/content/theme.ts    Per-course accent and code colours, taken from each mark
 src/content/highlight.ts Registers the languages a lesson may fence
 src/content/markdown.ts Renders a page body to highlighted HTML, with its headings
 src/pages/              Home (the catalogue), course, lesson, 404
@@ -117,7 +118,9 @@ pasted into a terminal without selecting it. The languages are registered by han
 2. Write the frontmatter: `title`, `level`, `summary`, `labels`, `minutes`, `status`.
 3. Use the standard sections: `## What this course is`, `## Who it is for`, `## What you will
 build`, `## Prerequisites`, `## How the pages are ordered`.
-4. Add a mark at `public/marks/<course>.svg`, drawn from plain shapes in the navy and mint palette.
+4. Add a mark at `public/marks/<course>.svg`, drawn from plain shapes on the navy card, with the glyph
+   in the course's own brand colour. Then add the same hex to `BRANDS` in `src/content/theme.ts`,
+   which is what tints that course's pages and code blocks.
 5. Run `npm run typecheck && npm test`. The catalogue test fails if the mark is missing.
 
 ## Adding a lesson

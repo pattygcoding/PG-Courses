@@ -3,16 +3,16 @@
   <!-- The course mark: a route that starts at a node and ends in an arrow. -->
   <defs>
     <radialGradient id="express-mark-glow" cx="50%" cy="38%" r="60%">
-      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
-      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+      <stop offset="0" stop-color="#9AA6B2" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#9AA6B2" stop-opacity="0" />
     </radialGradient>
   </defs>
   <rect width="1024" height="1024" rx="180" fill="#06090e" />
   <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
   <rect width="1024" height="1024" rx="180" fill="url(#express-mark-glow)" />
   <g>
-    <path d="M 300 770 V 500 A 160 160 0 0 1 460 340 H 610" fill="none" stroke="#8debc4" stroke-width="84" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M 570 250 L 740 340 L 570 430 Z" fill="#8debc4" />
-    <circle cx="300" cy="800" r="54" fill="#4fb894" />
+    <path d="M 300 770 V 500 A 160 160 0 0 1 460 340 H 610" fill="none" stroke="#E6EBF0" stroke-width="84" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 570 250 L 740 340 L 570 430 Z" fill="#E6EBF0" />
+    <circle cx="300" cy="800" r="54" fill="#9AA6B2" />
   </g>
 </svg>

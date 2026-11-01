@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import type { Course, Lesson } from '../content/courses'
+import { themeFor } from '../content/theme'
 import { router } from '../router'
 import CourseCard from './CourseCard.vue'
 
@@ -33,6 +34,8 @@ function course(overrides: Partial<Course> = {}): Course {
     minutes: 10,
     status: 'draft',
     mark: '/marks/sample.svg',
+    // The card never reads the theme, so any real course's values will do.
+    theme: themeFor('python'),
     body: 'Body',
     lessons: [],
     chapters: [],

@@ -181,6 +181,23 @@ html[data-theme='light'] .theme-icon-sun {
     color: rgb(var(--accent));
   }
 
+  /* A course's reading pages take their accent, and the two code tokens that
+     carry a hue, from the brand colour of the course mark. The values arrive on
+     the page root as `--course-*` custom properties from `themeFor`, so a
+     TypeScript lesson reads blue and a Ruby lesson reads red. Dark is the
+     default, and the light theme swaps in the pair that is deep enough for a
+     white page. */
+  .course-theme {
+    --accent: var(--course-accent);
+    --syn-string: var(--course-string);
+    --syn-number: var(--course-number);
+  }
+  html[data-theme='light'] .course-theme {
+    --accent: var(--course-accent-light);
+    --syn-string: var(--course-string-light);
+    --syn-number: var(--course-number-light);
+  }
+
   /* Rendered Markdown.  Written out rather than pulled from a typography
      plugin so the spacing matches the rest of the site. */
   .prose {

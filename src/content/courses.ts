@@ -1,4 +1,5 @@
 import { load } from 'js-yaml'
+import { themeFor, type CourseTheme } from './theme'
 
 /**
  * The course catalogue, derived from the folder tree under `courses/`.
@@ -65,6 +66,8 @@ export interface Course {
   readonly status: LessonStatus
   /** Public path of the course mark, derived from the slug. */
   readonly mark: string
+  /** Accent and code colours for this course's pages, taken from its mark. */
+  readonly theme: CourseTheme
   /** Markdown body of the course's first page. */
   readonly body: string
   /** Every lesson, in reading order. */
@@ -374,6 +377,7 @@ function buildCourse(folder: string, files: Map<string, string>): Course {
     minutes: data.minutes,
     status: data.status,
     mark: `/marks/${slug}.svg`,
+    theme: themeFor(slug),
     body,
     lessons,
     chapters: buildChapters(lessons),

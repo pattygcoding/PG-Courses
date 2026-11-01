@@ -59,7 +59,7 @@ function pad(order: number): string {
 </script>
 
 <template>
-  <div v-if="current" class="shell py-14 sm:py-20">
+  <div v-if="current" class="course-theme shell py-14 sm:py-20" :style="current.theme.vars">
     <header class="page-heading">
       <div class="eyebrow">
         <div class="flex min-w-0 items-center gap-3">

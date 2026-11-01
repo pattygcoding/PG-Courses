@@ -3,18 +3,18 @@
   <!-- The course mark: a coffee cup with steam, drawn from plain shapes. -->
   <defs>
     <radialGradient id="java-mark-glow" cx="50%" cy="38%" r="60%">
-      <stop offset="0" stop-color="#8debc4" stop-opacity="0.16" />
-      <stop offset="1" stop-color="#8debc4" stop-opacity="0" />
+      <stop offset="0" stop-color="#ED8B00" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#ED8B00" stop-opacity="0" />
     </radialGradient>
   </defs>
   <rect width="1024" height="1024" rx="180" fill="#06090e" />
   <rect x="4" y="4" width="1016" height="1016" rx="176" fill="none" stroke="#16202b" stroke-width="8" />
   <rect width="1024" height="1024" rx="180" fill="url(#java-mark-glow)" />
   <g>
-    <path d="M 420 320 C 420 250 490 250 490 180" fill="none" stroke="#6fd9af" stroke-width="38" stroke-linecap="round" />
-    <path d="M 566 320 C 566 250 636 250 636 180" fill="none" stroke="#6fd9af" stroke-width="38" stroke-linecap="round" />
-    <path d="M 300 380 H 724 V 620 A 130 130 0 0 1 594 750 H 430 A 130 130 0 0 1 300 620 Z" fill="#8debc4" />
-    <path d="M 724 456 h 34 a 96 96 0 0 1 0 192 h -34" fill="none" stroke="#4fb894" stroke-width="56" />
-    <rect x="232" y="812" width="560" height="56" rx="28" fill="#4fb894" />
+    <path d="M 420 320 C 420 250 490 250 490 180" fill="none" stroke="#6FA8C7" stroke-width="38" stroke-linecap="round" />
+    <path d="M 566 320 C 566 250 636 250 636 180" fill="none" stroke="#6FA8C7" stroke-width="38" stroke-linecap="round" />
+    <path d="M 300 380 H 724 V 620 A 130 130 0 0 1 594 750 H 430 A 130 130 0 0 1 300 620 Z" fill="#ED8B00" />
+    <path d="M 724 456 h 34 a 96 96 0 0 1 0 192 h -34" fill="none" stroke="#5382A1" stroke-width="56" />
+    <rect x="232" y="812" width="560" height="56" rx="28" fill="#5382A1" />
   </g>
 </svg>

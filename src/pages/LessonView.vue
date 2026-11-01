@@ -45,7 +45,11 @@ watch(pageTitle, (value) => {
 </script>
 
 <template>
-  <div v-if="current && lesson && page" class="shell py-14 sm:py-20">
+  <div
+    v-if="current && lesson && page"
+    class="course-theme shell py-14 sm:py-20"
+    :style="current.theme.vars"
+  >
     <header class="page-heading">
       <div class="eyebrow">
         <RouterLink
