@@ -7,7 +7,7 @@ labels:
   - Agents
   - Tooling
 minutes: 22
-status: planned
+status: draft
 ---
 
 ## What this course is
